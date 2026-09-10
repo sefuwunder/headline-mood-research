@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light" />
+  <link rel="icon" href="data:," />
+  <title>Lexicon approaches survey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,650;8..60,750&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #17212c;
+      --muted: #53616f;
+      --paper: #f7f8f6;
+      --surface: #ffffff;
+      --rule: #d5dcd9;
+      --teal: #006f6b;
+      --teal-soft: #d9efeb;
+      --coral: #d65339;
+      --coral-soft: #fbe7df;
+      --blue: #225f8c;
+      --blue-soft: #e4eef6;
+      --gold: #8d6500;
+      --gold-soft: #f6edcf;
+      --shadow: 0 18px 45px rgba(23,33,44,.08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "IBM Plex Sans", sans-serif;
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    .mast {
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px) 0 0/28px 28px,
+        #102c35;
+      color: white;
+      padding: clamp(30px, 6vw, 78px) max(20px, calc((100vw - 1180px) / 2));
+      overflow: hidden;
+    }
+    .mast-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(260px, .55fr);
+      gap: clamp(28px, 5vw, 70px);
+      align-items: end;
+    }
+    .kicker, .section-kicker {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .74rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .kicker { color: #89d5ce; margin: 0 0 15px; }
+    h1, h2, h3, .big-number { font-family: "Source Serif 4", serif; }
+    h1 {
+      margin: 0;
+      font-size: clamp(2.55rem, 7.2vw, 6rem);
+      line-height: .96;
+      letter-spacing: -.045em;
+      max-width: 900px;
+    }
+    .dek {
+      margin: 24px 0 0;
+      max-width: 760px;
+      color: #d4e1e3;
+      font-size: clamp(1rem, 2.2vw, 1.3rem);
+    }
+    .mast-note {
+      border-top: 1px solid rgba(255,255,255,.3);
+      padding-top: 18px;
+      color: #c4d4d6;
+      font-size: .88rem;
+    }
+    .mast-note strong { color: white; display: block; margin-bottom: 5px; }
+    .page { max-width: 1180px; margin: 0 auto; padding: 0 20px 80px; }
+    .signal-row {
+      margin-top: -28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      box-shadow: var(--shadow);
+      position: relative;
+      z-index: 2;
+    }
+    .signal { padding: 22px 24px; min-height: 118px; }
+    .signal + .signal { border-left: 1px solid var(--rule); }
+    .big-number { font-size: 2rem; line-height: 1; font-weight: 700; color: var(--teal); }
+    .signal p { margin: 9px 0 0; color: var(--muted); font-size: .9rem; }
+    section { padding-top: 70px; }
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr minmax(260px, 430px);
+      gap: 40px;
+      align-items: end;
+      padding-bottom: 22px;
+      border-bottom: 2px solid var(--ink);
+    }
+    .section-kicker { color: var(--teal); margin-bottom: 8px; }
+    h2 { font-size: clamp(2rem, 4.2vw, 3.5rem); letter-spacing: -.035em; line-height: 1; margin: 0; }
+    .section-head p { margin: 0; color: var(--muted); }
+    .thesis-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      margin-top: 24px;
+    }
+    .thesis-main {
+      background: var(--teal);
+      color: white;
+      padding: clamp(26px, 5vw, 52px);
+      min-height: 310px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .thesis-main blockquote {
+      margin: 0;
+      font-family: "Source Serif 4", serif;
+      font-size: clamp(1.65rem, 3.3vw, 3rem);
+      line-height: 1.14;
+      letter-spacing: -.025em;
+    }
+    .thesis-main small { color: #c6efeb; margin-top: 24px; }
+    .thesis-side { display: grid; gap: 12px; }
+    .era {
+      padding: 22px;
+      border: 1px solid var(--rule);
+      background: var(--surface);
+    }
+    .era .year { font: 500 .78rem "IBM Plex Mono", monospace; color: var(--coral); }
+    .era h3 { margin: 6px 0 6px; font-size: 1.34rem; }
+    .era p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .filters {
+      margin: 24px 0 18px;
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto;
+      gap: 12px;
+    }
+    .search-wrap { position: relative; }
+    .search-wrap svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+    input[type="search"] {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid #aeb8b7;
+      background: white;
+      color: var(--ink);
+      padding: 10px 14px 10px 42px;
+      border-radius: 0;
+      outline: none;
+    }
+    input[type="search"]:focus { border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal-soft); }
+    .filter-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+    .filter-btn {
+      min-height: 48px;
+      border: 1px solid #aeb8b7;
+      background: white;
+      color: var(--ink);
+      padding: 9px 15px;
+      cursor: pointer;
+    }
+    .filter-btn[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: white; }
+    .result-line { color: var(--muted); font-size: .84rem; margin: 0 0 14px; }
+    .library {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .paper {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      padding: 22px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      min-height: 280px;
+    }
+    .paper.hidden { display: none; }
+    .paper-top { display: flex; justify-content: space-between; gap: 16px; align-items: start; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font: 500 .68rem "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .035em;
+      padding: 4px 7px;
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+    .tag.new { background: var(--coral-soft); color: #9d331f; }
+    .tag.emotion { background: var(--gold-soft); color: var(--gold); }
+    .year-badge { font: 500 .8rem "IBM Plex Mono", monospace; color: var(--muted); white-space: nowrap; }
+    .paper h3 { font-size: 1.42rem; line-height: 1.15; margin: 18px 0 8px; letter-spacing: -.02em; }
+    .citation { color: var(--muted); font-size: .8rem; margin: 0 0 16px; }
+    .paper .idea { margin: 0 0 20px; }
+    .paper-link {
+      align-self: end;
+      width: fit-content;
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 2px;
+    }
+    .paper-link:hover { color: var(--coral); }
+    .no-results {
+      display: none;
+      padding: 40px 0;
+      border-top: 1px solid var(--rule);
+      color: var(--muted);
+      text-align: center;
+    }
+    .no-results.show { display: block; }
+    .novel-list { margin-top: 0; }
+    .novel-row {
+      display: grid;
+      grid-template-columns: 150px 1fr minmax(220px, .7fr);
+      gap: 24px;
+      padding: 26px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+    }
+    .novel-index { font: 500 .75rem "IBM Plex Mono", monospace; color: var(--coral); }
+    .novel-row h3 { margin: 0 0 8px; font-size: 1.45rem; }
+    .novel-row p { margin: 0; }
+    .novel-evidence { color: var(--muted); font-size: .88rem; }
+    .novel-evidence strong { color: var(--ink); display: block; margin-bottom: 5px; }
+    .protocol {
+      margin-top: 26px;
+      counter-reset: step;
+    }
+    .step {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr) minmax(230px, .65fr);
+      gap: 22px;
+      padding: 26px 0;
+      border-top: 1px solid var(--rule);
+    }
+    .step:first-child { border-top: 0; }
+    .step::before {
+      content: counter(step, decimal-leading-zero);
+      font: 500 1.25rem "IBM Plex Mono", monospace;
+      color: var(--teal);
+    }
+    .step h3 { margin: 0 0 6px; font-size: 1.3rem; }
+    .step p { margin: 0; color: var(--muted); }
+    .step .basis { font-size: .84rem; color: var(--ink); }
+    .benchmark {
+      margin-top: 28px;
+      background: #17212c;
+      color: white;
+      display: grid;
+      grid-template-columns: .7fr 1.3fr;
+      gap: 30px;
+      padding: clamp(28px, 5vw, 50px);
+    }
+    .benchmark .metric { color: #8fe0d8; font: 500 .78rem "IBM Plex Mono", monospace; text-transform: uppercase; }
+    .benchmark .number { font: 700 clamp(3.2rem, 8vw, 6.5rem) "Source Serif 4", serif; line-height: .9; margin: 10px 0; }
+    .benchmark h3 { font-size: 1.7rem; margin: 0 0 12px; }
+    .benchmark p { color: #c7d1d4; margin: 0 0 16px; }
+    .benchmark a { color: #8fe0d8; }
+    .caveat {
+      margin-top: 24px;
+      border: 1px solid #d8bf64;
+      background: #fffaf0;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+    }
+    .caveat-mark { color: var(--gold); font: 700 1.2rem "IBM Plex Mono", monospace; }
+    .caveat h3 { margin: 0 0 4px; font-size: 1.1rem; }
+    .caveat p { margin: 0; color: var(--muted); font-size: .9rem; }
+    footer {
+      margin-top: 70px;
+      border-top: 2px solid var(--ink);
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+    @media (max-width: 820px) {
+      .mast-grid, .section-head, .thesis-grid, .benchmark { grid-template-columns: 1fr; }
+      .mast-note { max-width: 520px; }
+      .library { grid-template-columns: 1fr; }
+      .novel-row { grid-template-columns: 90px 1fr; }
+      .novel-evidence { grid-column: 2; }
+      .step { grid-template-columns: 54px 1fr; }
+      .step .basis { grid-column: 2; }
+      .filters { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .mast { padding-top: 34px; padding-bottom: 58px; }
+      .signal-row { grid-template-columns: 1fr; margin-top: -18px; }
+      .signal { min-height: 0; }
+      .signal + .signal { border-left: 0; border-top: 1px solid var(--rule); }
+      section { padding-top: 52px; }
+      .section-head { gap: 16px; }
+      .filter-buttons { display: grid; grid-template-columns: repeat(3, 1fr); }
+      .filter-btn { padding: 8px; }
+      .novel-row { grid-template-columns: 1fr; gap: 7px; }
+      .novel-evidence { grid-column: 1; }
+      .step { grid-template-columns: 44px 1fr; gap: 12px; }
+      footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <header class="mast">
+    <div class="mast-grid">
+      <div>
+        <p class="kicker">Research survey · 1966–2024</p>
+        <h1>When word lists learned context</h1>
+        <p class="dek">A field guide to classic lexicons, newer induction and hybrid methods, and the ideas most likely to improve fear↔hope and pessimism↔optimism scoring for short news headlines.</p>
+      </div>
+      <div class="mast-note">
+        <strong>Reading lens</strong>
+        Not “lexicons versus neural models,” but how transparent lexical knowledge can be weighted, adapted, validated, and combined with contextual models.
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="signal-row" aria-label="Survey at a glance">
+      <div class="signal"><div class="big-number">24</div><p>linked papers and lexical resources surveyed</p></div>
+      <div class="signal"><div class="big-number">2 eras</div><p>from category counts to induced and hybrid lexicons</p></div>
+      <div class="signal"><div class="big-number">1,250</div><p>annotated headlines in the closest benchmark found</p></div>
+    </div>
+
+    <section id="thesis">
+      <div class="section-head">
+        <div><div class="section-kicker">The through-line</div><h2>Old machinery, new context</h2></div>
+        <p>The durable ideas are graded intensity, separate emotional poles, and explicit rules. Recent work adds domain induction, concept-level coverage, continuous affect dimensions, and transformer hybrids.</p>
+      </div>
+      <div class="thesis-grid">
+        <div class="thesis-main">
+          <blockquote>Lexicons have not disappeared. They have become priors, features, filters, and interpretable checkpoints inside larger systems.</blockquote>
+          <small>Supported by SentiLARE, SKEP, lexicon-filtered BERT, and comparative “revival” evidence.</small>
+        </div>
+        <div class="thesis-side">
+          <article class="era"><span class="year">1966–2014</span><h3>Count → weight → shift</h3><p>General Inquirer and LIWC establish categories; AFINN and SentiStrength add intensity; SO-CAL and VADER make context rules operational.</p></article>
+          <article class="era"><span class="year">2016–2024</span><h3>Induce → adapt → hybridize</h3><p>SentProp learns domain lexicons from embeddings; newer systems inject lexical knowledge into pre-training or filter neural inputs.</p></article>
+          <article class="era"><span class="year">HEADLINE FIT</span><h3>Emotion, not just polarity</h3><p>DepecheMood is news-derived; NRC VAD provides continuous affect; SemEval Affective Text offers direct headline validation.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="library">
+      <div class="section-head">
+        <div><div class="section-kicker">Paper library</div><h2>Browse the approaches</h2></div>
+        <p>Search by method, author, or idea. Filter by era or focus; every external link was carried through from the research survey.</p>
+      </div>
+      <div class="filters" aria-label="Paper filters">
+        <label class="search-wrap">
+          <span class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Search papers</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m16.5 16.5 4 4" stroke="currentColor" stroke-width="2"/></svg>
+          <input id="search" type="search" placeholder="Search papers, methods, or authors…" autocomplete="off" />
+        </label>
+        <div class="filter-buttons">
+          <button class="filter-btn" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-btn" data-filter="classic" aria-pressed="false">Classic</button>
+          <button class="filter-btn" data-filter="recent" aria-pressed="false">Recent</button>
+          <button class="filter-btn" data-filter="emotion" aria-pressed="false">Emotion</button>
+          <button class="filter-btn" data-filter="hybrid" aria-pressed="false">Hybrid</button>
+        </div>
+      </div>
+      <p class="result-line" id="resultLine" aria-live="polite">Showing all 24 entries</p>
+      <div class="library" id="paperLibrary">
+
+        <article class="paper" data-tags="classic counting psychology">
+          <div class="paper-top"><div class="tags"><span class="tag">Classic</span><span class="tag">Counting</span></div><span class="year-badge">2010</span></div>
+          <h3>LIWC: psychological categories</h3>
+          <p class="citation">Tausczik & Pennebaker · Journal of Language and Social Psychology</p>
+          <p class="idea">Scores text as the percentage of words in psychologically meaningful categories. A heavily validated template for transparent custom category counts; the dictionary itself is commercial.</p>
+          <a class="paper-link" href="https://journals.sagepub.com/doi/10.1177/0261927X09351676" target="_blank" rel="noopener">Read the paper ↗</a>
+        </article>
+
+        <article class="paper" data-tags="classic rules social media negation intensity">
+          <div class="paper-top"><div class="tags"><span class="tag">Classic</span><span class="tag">Rules</span></div><span class="year-badge">2014</span></div>
+          <h3>VADER: valence with five heuristics</h3>
+          <p class="citation">Hutto & Gilbert · ICWSM</p>
+          <p class="idea">Combines roughly 7,500 human-rated lexical features with punctuation, capitalization, degree modifiers, “but,” and a negation window. Its normalized compound score remains the clearest lightweight rule recipe.</p>
+          <a class="paper-link" href="https://eecs.csuohio.edu/~sschung/CIS593/VADER_Paper2014_AAAI.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+        </article>
+
+        <article class="paper" data-tags="classic intensity social media bootstrapping">
+          <div class="paper-top"><div class="tags"><span class="tag">Classic</span><span class="tag">Intensity</span></div><span class="year-badge">2011</span></div>
+          <h3>AFINN: a small graded lexicon</h3>
+          <p class="citation">Nielsen · Making Sense of Microposts</p>
+          <p class="idea">Manually scores 2,477 words from −5 to +5 and demonstrates a pragmatic seed-and-expand workflow across slang, synonyms, and corpus similarity.</p>
+          <a class="paper-link" href="https://ar5iv.labs.arxiv.org/html/1103.2903" target="_blank" rel="noopener">Read on ar5iv ↗</a>
+        </article>
+
+        <article class="paper" data-tags="classic emotion crowdsourcing fear anticipation plutchik">
+          <div class="paper-top"><div class="tags"><span class="tag">Classic</span><span class="tag emotion">Emotion</span></div><span class="year-badge">2013</span></div>
+          <h3>NRC Emotion Lexicon: eight emotions at scale</h3>
+          <p class="citation">Mohammad & Turney · Computational Intelligence</p>
+          <p class="idea">Crowdsourced associations for roughly 14,182 words across eight Plutchik emotions plus positive and negative; directly supplies fear and the anticipation category closest to hope.</p>
+          <a class="paper-link" href="https://web3.arxiv.org/pdf/1308.6297" target="_blank" rel="noopener">Open PDF ↗</a>
+        </article>
+
+        <article class="paper" data-tags="classic wordnet sense polysemy semi-supervised">
+          <div class="paper-top"><div class="tags"><span class="tag">Classic</span><span class="tag">Sense-level</span></div><span class="year-badge">2010</span></div>
+          <h3>SentiWordNet 3.0: sentiment by synset</h3>
+          <p class="citation">Baccianella, Esuli & Sebastiani · LREC</p>
+          <p class="idea">Assigns positivity, negativity, and objectivity to every WordNet synset using semi-supervised classifier committees and random-walk refinement—partially addressing polysemy.</p>
+          <a class="paper-link" href="http://nmis.isti.cnr.it/sebastiani/Publications/LREC10.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+        </article>
+
+        <article class="paper" data-tags="classic contextual polarity subjectivity pos negation">
+          <div class="paper-top"><div class="tags"><span class="tag">Classic</span><span class="tag">Context</span></div><span class="year-badge">2005</span></div>
+          <h3>MPQA: prior polarity is not contextual polarity</h3>
+          <p class="citation">Wilson, Wiebe & Hoffmann · HLT/EMNLP</p>
+          <p class="idea">Marks 8,221 clues as strongly or weakly subjective, with prior polarity and part of speech. Its central lesson: modality, negation, and discourse can overturn a word’s default polarity.</p>
+          <a class="paper-link" href="https://aclanthology.org/H05-1044.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+        </article>
+
+        <article class="paper" data-tags="classic counting psychosocial dictionary baseline">
+          <div class="paper-top"><div class="tags"><span class="tag">Classic</span><span class="tag">Foundation</span></div><span class="year-badge">1966</span></div>
+          <h3>General Inquirer: the category-counting origin</h3>
+          <p class="citation">Stone, Dunphy, Smith & Ogilvie · MIT Press</p>
+          <p class="idea">The foundational computerized content-analysis dictionary: positive and negative terms alongside strong/weak, active/passive, pleasure/pain, and other psychosocial categories.</p>
+          <a class="paper-link" href="https://inquirer.sites.fas.harvard.edu/homecat.htm" target="_blank" rel="noopener">Explore the resource ↗</a>
+        </article>
+
+        <article class="paper" data-tags="classic short text dual scale intensity emoticons negation">
+          <div class="paper-top"><div class="tags"><span class="tag">Classic</span><span class="tag">Short text</span></div><span class="year-badge">2010</span></div>
+          <h3>SentiStrength: keep both poles</h3>
+          <p class="citation">Thelwall et al. · JASIST</p>
+          <p class="idea">Rates positive and negative strength independently on 1–5 scales, preserving mixed emotion instead of cancelling it. Includes rules for negation, boosters, emoticons, and repeated letters.</p>
+          <a class="paper-link" href="http://ideas.repec.org/a/bla/jamist/v61y2010i12p2544-2558.html" target="_blank" rel="noopener">View record ↗</a>
+        </article>
+
+        <article class="paper" data-tags="emotion vad continuous fear hope optimism pessimism dominance">
+          <div class="paper-top"><div class="tags"><span class="tag emotion">Emotion</span><span class="tag">Dimensional</span></div><span class="year-badge">2018</span></div>
+          <h3>NRC VAD: emotion as coordinates</h3>
+          <p class="citation">Mohammad · ACL</p>
+          <p class="idea">Rates 20,000 English words on continuous valence, arousal, and dominance scales, enabling fear and hope to be modeled as regions in affective space rather than binary labels.</p>
+          <a class="paper-link" href="https://aclweb.org/anthology/P18-1017.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+        </article>
+
+        <article class="paper" data-tags="emotion vad continuous norms crowdsourcing">
+          <div class="paper-top"><div class="tags"><span class="tag emotion">Emotion</span><span class="tag">Norms</span></div><span class="year-badge">2013</span></div>
+          <h3>Warriner norms: broader affective coverage</h3>
+          <p class="citation">Warriner, Kuperman & Brysbaert · Behavior Research Methods</p>
+          <p class="idea">Extends classic affective norms to roughly 13,915 lemmas on 1–9 valence, arousal, and dominance scales, with demographic breakdowns.</p>
+          <a class="paper-link" href="https://doi.org/10.3758/s13428-012-0314-x" target="_blank" rel="noopener">Read via DOI ↗</a>
+        </article>
+
+        <article class="paper" data-tags="emotion news headlines domain afraid inspired automatic">
+          <div class="paper-top"><div class="tags"><span class="tag emotion">Emotion</span><span class="tag">News</span></div><span class="year-badge">2014</span></div>
+          <h3>DepecheMood: a lexicon born from news</h3>
+          <p class="citation">Staiano & Guerini · ACL</p>
+          <p class="idea">Harvests reader emotion votes on news articles into scores for roughly 37,000 terms, including afraid, happy, inspired, and sad. It is the strongest domain match in the survey.</p>
+          <a class="paper-link" href="http://arxiv.org/pdf/1405.1605" target="_blank" rel="noopener">Open PDF ↗</a>
+        </article>
+
+        <article class="paper" data-tags="emotion concepts multiword expressions senticnet fear">
+          <div class="paper-top"><div class="tags"><span class="tag emotion">Emotion</span><span class="tag">Concepts</span></div><span class="year-badge">2010</span></div>
+          <h3>SenticNet: beyond isolated words</h3>
+          <p class="citation">Cambria, Speer, Havasi & Hussain · AAAI Fall Symposium</p>
+          <p class="idea">Represents multiword concepts such as “lose job,” with affect organized by the Hourglass model. Concept-level matching is especially useful for compact, phrase-dense headlines.</p>
+          <a class="paper-link" href="https://sentic.net/senticnet.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+        </article>
+
+        <article class="paper" data-tags="domain adaptation finance audit mismatch uncertainty">
+          <div class="paper-top"><div class="tags"><span class="tag emotion">Domain</span><span class="tag">Audit</span></div><span class="year-badge">2011</span></div>
+          <h3>Loughran–McDonald: domain mismatch quantified</h3>
+          <p class="citation">Loughran & McDonald · Journal of Finance</p>
+          <p class="idea">Found roughly 75% of Harvard-IV “negative” words were not negative in financial text. A decisive case for auditing generic lexicons against the language of the target domain.</p>
+          <a class="paper-link" href="https://doi.org/10.1111/j.1540-6261.2010.01625.x" target="_blank" rel="noopener">Read via DOI ↗</a>
+        </article>
+
+        <article class="paper" data-tags="emotion vad validation perspective reader writer corpus">
+          <div class="paper-top"><div class="tags"><span class="tag emotion">Emotion</span><span class="tag">Corpus</span></div><span class="year-badge">2018</span></div>
+          <h3>EmoBank: whose emotion is being scored?</h3>
+          <p class="citation">Buechel & Hahn · EACL</p>
+          <p class="idea">Provides 10,000 sentences with VAD ratings from writer and reader perspectives—and shows that perspective systematically changes ratings.</p>
+          <a class="paper-link" href="http://arxiv.org/pdf/1810.10949v1" target="_blank" rel="noopener">Open PDF ↗</a>
+        </article>
+
+        <article class="paper" data-tags="recent induction embeddings graph propagation domain historical">
+          <div class="paper-top"><div class="tags"><span class="tag new">Recent</span><span class="tag">Induction</span></div><span class="year-badge">2016</span></div>
+          <h3>SentProp: propagate from tiny seed sets</h3>
+          <p class="citation">Hamilton, Clark, Leskovec & Jurafsky · EMNLP</p>
+          <p class="idea">Builds a graph over domain embeddings and propagates labels from a small seed set via random walks. It beat hand-curated resources and revealed that sentiment can shift historically.</p>
+          <a class="paper-link" href="http://arxiv.org/abs/1606.02820v1" target="_blank" rel="noopener">Read on arXiv ↗</a>
+        </article>
+
+        <article class="paper" data-tags="recent induction embeddings bilingual emotion cross language">
+          <div class="paper-top"><div class="tags"><span class="tag new">Recent</span><span class="tag emotion">Emotion</span></div><span class="year-badge">2019</span></div>
+          <h3>DepecheMood++: expand and cross languages</h3>
+          <p class="citation">Araque, Gatti, Staiano & Guerini · IEEE TAC</p>
+          <p class="idea">Uses embedding similarity to expand emotional coverage and transfer lexicons across languages, while showing simple regressors over lexicon scores remain strong baselines.</p>
+          <a class="paper-link" href="http://arxiv.org/pdf/1810.03660v1" target="_blank" rel="noopener">Open PDF ↗</a>
+        </article>
+
+        <article class="paper" data-tags="recent induction llm human collaborative colloquial emotion cantonese">
+          <div class="paper-top"><div class="tags"><span class="tag new">Recent</span><span class="tag">Human + LLM</span></div><span class="year-badge">2024</span></div>
+          <h3>Human–LLM lexicon construction</h3>
+          <p class="citation">Zhang et al. · arXiv</p>
+          <p class="idea">Lets an LLM draft emotion labels, including colloquial expressions, then uses human verification. The collaborative lexicon outperformed either contributor alone.</p>
+          <a class="paper-link" href="http://arxiv.org/abs/2410.11526" target="_blank" rel="noopener">Read on arXiv ↗</a>
+        </article>
+
+        <article class="paper" data-tags="recent domain adaptation unsupervised automatic construction">
+          <div class="paper-top"><div class="tags"><span class="tag new">Recent</span><span class="tag">Domain</span></div><span class="year-badge">2021</span></div>
+          <h3>Automatic domain-specific lexicon construction</h3>
+          <p class="citation">Beigi & Moattar · Knowledge-Based Systems</p>
+          <p class="idea">Automates domain-specific lexicon construction for unsupervised adaptation—a modern, scalable counterpart to manually rebuilding a dictionary for each field.</p>
+          <a class="paper-link" href="https://doi.org/10.1016/J.KNOSYS.2020.106423" target="_blank" rel="noopener">Read via DOI ↗</a>
+        </article>
+
+        <article class="paper" data-tags="recent hybrid transformer bert sentiwordnet pretraining attention">
+          <div class="paper-top"><div class="tags"><span class="tag new">Recent</span><span class="tag">Hybrid</span></div><span class="year-badge">2020</span></div>
+          <h3>SentiLARE: lexicons inside pre-training</h3>
+          <p class="citation">Ke et al. · EMNLP</p>
+          <p class="idea">Injects POS-conditioned SentiWordNet polarity into pre-training through context-aware sentiment attention and label-aware masked language modeling.</p>
+          <a class="paper-link" href="https://aclanthology.org/2020.emnlp-main.567/" target="_blank" rel="noopener">Read at ACL Anthology ↗</a>
+        </article>
+
+        <article class="paper" data-tags="recent hybrid transformer pretraining masking aspect sentiment">
+          <div class="paper-top"><div class="tags"><span class="tag new">Recent</span><span class="tag">Hybrid</span></div><span class="year-badge">2020</span></div>
+          <h3>SKEP: sentiment-aware pre-training objectives</h3>
+          <p class="citation">Tian et al. · ACL</p>
+          <p class="idea">Mines sentiment knowledge automatically, then trains on sentiment-word, word-polarity, and aspect–sentiment-pair prediction objectives.</p>
+          <a class="paper-link" href="https://arxiv.org/abs/2005.05635v1" target="_blank" rel="noopener">Read on arXiv ↗</a>
+        </article>
+
+        <article class="paper" data-tags="recent hybrid bert lexicon filter efficiency reviews">
+          <div class="paper-top"><div class="tags"><span class="tag new">Recent</span><span class="tag">Hybrid</span></div><span class="year-badge">2021</span></div>
+          <h3>Lexicon-filtered BERT: less text, more signal</h3>
+          <p class="citation">Zhang et al. · Journal of Physics: Conference Series</p>
+          <p class="idea">Feeds only lexicon-matched sentiment words as features. On long reviews, the reported F1 was 0.82 versus 0.78 for BERT-BASE, while reducing noise and compute.</p>
+          <a class="paper-link" href="https://testprints.strath.ac.uk/79183/1/Zhang_JPCS_2021_A_combination_of_lexicon_based_and_classified_based_methods_for_sentiment_classification.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+        </article>
+
+        <article class="paper" data-tags="recent hybrid negation scope bert syntax contextual polarity">
+          <div class="paper-top"><div class="tags"><span class="tag new">Recent</span><span class="tag">Negation</span></div><span class="year-badge">2020</span></div>
+          <h3>NegBERT: learn the scope, not a window</h3>
+          <p class="citation">Khandelwal & Sawant · LREC</p>
+          <p class="idea">Treats negation cue detection and scope resolution as token classification, showing why fixed three-word windows are only an approximation of syntax-driven scope.</p>
+          <a class="paper-link" href="http://arxiv.org/abs/1911.04211" target="_blank" rel="noopener">Read on arXiv ↗</a>
+        </article>
+
+        <article class="paper" data-tags="emotion headlines benchmark short text fear joy valence validation">
+          <div class="paper-top"><div class="tags"><span class="tag emotion">Emotion</span><span class="tag">Benchmark</span></div><span class="year-badge">2007</span></div>
+          <h3>SemEval Affective Text: the headline benchmark</h3>
+          <p class="citation">Strapparava & Mihalcea · SemEval</p>
+          <p class="idea">Contains 1,250 news headlines averaging six words, judged for six emotions on 0–100 scales plus valence from −100 to 100. It is the closest benchmark to the target task.</p>
+          <a class="paper-link" href="https://aclanthology.org/S07-1013.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+        </article>
+
+        <article class="paper" data-tags="recent revival comparison bert lexicon interpretable russian">
+          <div class="paper-top"><div class="tags"><span class="tag new">Recent</span><span class="tag">Revival</span></div><span class="year-badge">2021</span></div>
+          <h3>Lexicon methods vs. BERT</h3>
+          <p class="citation">Kotelnikov · AIST</p>
+          <p class="idea">Across 16 Russian corpora, RuBERT won on average, yet SO-CAL beat it outright on four. The case for lexicons is not universal superiority, but speed, interpretability, and occasional domain wins.</p>
+          <a class="paper-link" href="http://arxiv.org/abs/2111.10097v1" target="_blank" rel="noopener">Read on arXiv ↗</a>
+        </article>
+
+      </div>
+      <div class="no-results" id="noResults">No entries match that search and filter.</div>
+    </section>
+
+    <section id="novel">
+      <div class="section-head">
+        <div><div class="section-kicker">Novel uses</div><h2>Six patterns worth stealing</h2></div>
+        <p>These are not just newer papers. They are reusable research moves that change how a lexical system is built, scoped, or evaluated.</p>
+      </div>
+      <div class="novel-list">
+        <article class="novel-row"><div class="novel-index">01 · INDUCE</div><div><h3>Grow a domain lexicon from a small seed set</h3><p>Build a graph over headline embeddings and propagate labels from carefully chosen fear, hope, pessimism, and optimism seeds.</p></div><p class="novel-evidence"><strong>Evidence</strong>SentProp; DepecheMood++; automatic domain adaptation.</p></article>
+        <article class="novel-row"><div class="novel-index">02 · LOCATE</div><div><h3>Model emotion as a region in VAD space</h3><p>Fear is not merely “negative,” and hope is not simply “positive.” Continuous valence, arousal, and dominance can represent their different profiles.</p></div><p class="novel-evidence"><strong>Evidence</strong>NRC VAD; Warriner norms; EmoBank.</p></article>
+        <article class="novel-row"><div class="novel-index">03 · PHRASE</div><div><h3>Score concepts, not only tokens</h3><p>Headline meaning often sits in compact phrases—“lose job,” “peace deal,” “risk eases”—whose effect is not the sum of isolated words.</p></div><p class="novel-evidence"><strong>Evidence</strong>SenticNet’s concept-level design.</p></article>
+        <article class="novel-row"><div class="novel-index">04 · SCOPE</div><div><h3>Replace negation windows with syntactic scope</h3><p>Use dependency subtrees or a learned scope detector when available; otherwise treat a fixed word window as an explicit approximation.</p></div><p class="novel-evidence"><strong>Evidence</strong>NegBERT, with MPQA, SO-CAL, and VADER as rule-based predecessors.</p></article>
+        <article class="novel-row"><div class="novel-index">05 · HYBRID</div><div><h3>Use lexical knowledge as a prior or filter</h3><p>A lexicon can focus a transformer, add interpretable features, or create pre-training objectives rather than compete with the model.</p></div><p class="novel-evidence"><strong>Evidence</strong>SentiLARE; SKEP; lexicon-filtered BERT.</p></article>
+        <article class="novel-row"><div class="novel-index">06 · CURATE</div><div><h3>Let models propose; let people adjudicate</h3><p>LLMs can expand colloquial and low-coverage candidates quickly, but human verification remains the quality gate.</p></div><p class="novel-evidence"><strong>Evidence</strong>Human–LLM collaborative Cantonese emotion lexicon.</p></article>
+      </div>
+    </section>
+
+    <section id="protocol">
+      <div class="section-head">
+        <div><div class="section-kicker">Recommended protocol</div><h2>From word list to defensible scorer</h2></div>
+        <p>A compact implementation path for the existing headline widget, ordered by expected value before model complexity.</p>
+      </div>
+      <div class="protocol">
+        <article class="step"><div><h3>Grade every term</h3><p>Move from binary membership to signed intensity, for example −5…+5. Preserve source, confidence, and domain notes per entry.</p></div><p class="basis">AFINN · SentiStrength</p></article>
+        <article class="step"><div><h3>Keep each pole separate</h3><p>Accumulate fear and hope independently, and pessimism and optimism independently, before deriving a displayed index. Mixed headlines stay visible.</p></div><p class="basis">SentiStrength · VADER</p></article>
+        <article class="step"><div><h3>Add a small shifter engine</h3><p>Handle negation, intensifiers, diminishers, contrastive clauses, and irrealis markers. Prefer syntactic scope when available.</p></div><p class="basis">VADER · SO-CAL · NegBERT</p></article>
+        <article class="step"><div><h3>Expand in-domain, then review</h3><p>Seed headline embeddings with 20–40 terms per pole, propagate candidate scores, and run a human review pass—optionally with LLM suggestions.</p></div><p class="basis">SentProp · DepecheMood++ · Zhang et al. 2024</p></article>
+        <article class="step"><div><h3>Add phrase and VAD layers</h3><p>Match recurring multiword concepts first, then use continuous valence–arousal–dominance norms as a back-off for uncovered words.</p></div><p class="basis">SenticNet · NRC VAD · Warriner</p></article>
+        <article class="step"><div><h3>Validate where it will be used</h3><p>Benchmark on SemEval headlines, then hand-label a sample of current HN and Guardian headlines. Audit systematic misses and domain flips.</p></div><p class="basis">SemEval-2007 · Loughran–McDonald</p></article>
+      </div>
+      <div class="benchmark">
+        <div><div class="metric">Closest benchmark</div><div class="number">1,250</div><div>news headlines</div></div>
+        <div><h3>SemEval-2007 Task 14: Affective Text</h3><p>Headlines average six words and carry six emotion ratings, including fear and joy, plus a valence score. The task was explicitly unsupervised and lexical-semantic, making it a strong first test bed.</p><a href="https://aclanthology.org/S07-1013.pdf" target="_blank" rel="noopener">Read the task paper ↗</a></div>
+      </div>
+      <div class="caveat">
+        <div class="caveat-mark">!</div>
+        <div><h3>Domain language can reverse the signal</h3><p>Loughran and McDonald found roughly 75% of Harvard-IV “negative” words were not negative in financial text. Terms such as “risk,” “warning,” “threat,” and “relief” deserve the same audit in news headlines.</p></div>
+      </div>
+    </section>
+
+    <footer>
+      <span>Survey read September 10, 2026 · index-based literature review, not live browser verification.</span>
+      <span>Links omitted where the research could not verify a direct paper URL.</span>
+    </footer>
+  </main>
+
+  <script>
+    const search = document.getElementById('search');
+    const buttons = [...document.querySelectorAll('.filter-btn')];
+    const papers = [...document.querySelectorAll('.paper')];
+    const resultLine = document.getElementById('resultLine');
+    const noResults = document.getElementById('noResults');
+    let activeFilter = 'all';
+
+    function updateLibrary() {
+      const query = search.value.trim().toLowerCase();
+      let visible = 0;
+      papers.forEach((paper) => {
+        const filterMatch = activeFilter === 'all' || paper.dataset.tags.includes(activeFilter);
+        const searchMatch = !query || paper.textContent.toLowerCase().includes(query) || paper.dataset.tags.includes(query);
+        const show = filterMatch && searchMatch;
+        paper.classList.toggle('hidden', !show);
+        if (show) visible += 1;
+      });
+      resultLine.textContent = visible === papers.length ? `Showing all ${papers.length} entries` : `Showing ${visible} of ${papers.length} entries`;
+      noResults.classList.toggle('show', visible === 0);
+    }
+
+    buttons.forEach((button) => button.addEventListener('click', () => {
+      activeFilter = button.dataset.filter;
+      buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      updateLibrary();
+    }));
+    search.addEventListener('input', updateLibrary);
+  </script>
+</body>
+</html>

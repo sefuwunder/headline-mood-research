@@ -15,6 +15,9 @@ Daily research artifacts for refining the headline-mood scoring on the
 - `trend.jsonl` — one line per day: `{date, hn_index, hn_n, guardian_index, guardian_n}`.
 - `bibliography.md` — running record of research papers reviewed
   (title, authors/year, link, one-line idea, verdict).
+- `survey.html` — interactive survey page: 24 classic and recent lexicon
+  approaches, searchable paper cards, synthesis of six novel research patterns,
+  and a six-step implementation protocol for the two spectra.
 
 ## Method
 
