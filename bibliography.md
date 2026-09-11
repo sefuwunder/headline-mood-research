@@ -21,3 +21,6 @@ distilled into entries below when they land.
 - Loughran & McDonald 2011 — https://doi.org/10.1111/j.1540-6261.2010.01625.x — ~75% of a general lexicon's negative words misfire in finance text. Verdict: adopted as principle — audit every lexicon word against the target domain (HN vs Guardian separately).
 - Kotelnikov 2021 — http://arxiv.org/abs/2111.10097v1 — lexicon method (SO-CAL) beat RuBERT on 4/16 corpora. Verdict: noted — lexicons remain competitive; no need to reach for heavy models yet.
 - NegBERT (Khandelwal & Sawant 2020) — http://arxiv.org/abs/1911.04211 — BERT-based negation cue+scope resolution, F1 ~91-96. Verdict: parked — full syntax-aware negation is overkill today, but worth revisiting if negation errors pile up.
+
+## 2026-09-11 — literature scan
+- TriLex (Alharbi, Aljurbua, Gupta & Obradovic, 2025) — https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0317100 — unsupervised fusion of TextBlob/VADER/AFINN via majority vote + cross-lexicon score normalization beat individual lexicons by 2-8% on short texts. Verdict: watch — score normalization across two spectra is portable; full fusion is heavier than our needs.
