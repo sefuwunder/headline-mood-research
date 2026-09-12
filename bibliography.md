@@ -22,5 +22,8 @@ distilled into entries below when they land.
 - Kotelnikov 2021 — http://arxiv.org/abs/2111.10097v1 — lexicon method (SO-CAL) beat RuBERT on 4/16 corpora. Verdict: noted — lexicons remain competitive; no need to reach for heavy models yet.
 - NegBERT (Khandelwal & Sawant 2020) — http://arxiv.org/abs/1911.04211 — BERT-based negation cue+scope resolution, F1 ~91-96. Verdict: parked — full syntax-aware negation is overkill today, but worth revisiting if negation errors pile up.
 
+## 2026-09-12 — literature scan
+- Polanyi & Zaenen (2006), "Contextual Valence Shifters" — https://doi.org/10.1007/1-4020-4102-0_1 — negators, intensifiers and modals shift a word's valence along a scale rather than flipping it: a negated negative moves toward neutral, not to positive ("not bad" ≠ "good"). Verdict: adopt — today's HN sample ("SystemIO conflicts are not firmware bugs" → +100 optimism from a single negated "bugs") shows the scorer's sign-flip overreaches; negated hits should damp toward neutral.
+
 ## 2026-09-11 — literature scan
 - TriLex (Alharbi, Aljurbua, Gupta & Obradovic, 2025) — https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0317100 — unsupervised fusion of TextBlob/VADER/AFINN via majority vote + cross-lexicon score normalization beat individual lexicons by 2-8% on short texts. Verdict: watch — score normalization across two spectra is portable; full fusion is heavier than our needs.
