@@ -107,8 +107,10 @@ def score(title, neg_words, pos_words):
         if not kind:
             continue
         prev = [t.strip("'") for t in tokens[max(0, i - 2) : i]]
+        # Negators neutralize valence rather than flipping polarity
+        # (Polanyi & Zaenen 2006) — matches the dashboard.
         if any(t in NEGATORS or t.endswith("n't") for t in prev):
-            kind = "pos" if kind == "neg" else "neg"
+            continue
         if kind == "neg":
             neg += 1
             neg_hits.append(word)
@@ -137,7 +139,16 @@ def summarize(scored):
     }
 
 
-def candidates(scored_items, lexicon_words):
+def load_excluded():
+    """Words reviewed and rejected as mood signals (EXCLUDED_WORDS in server.ts)."""
+    src = SERVER_TS.read_text()
+    m = re.search(r"const EXCLUDED_WORDS = new Set\(\[(.*?)\]\);", src, re.S)
+    if not m:
+        return set()
+    return set(re.findall(r'"([^"]+)"', m.group(1)))
+
+
+def candidates(scored_items, lexicon_words, excluded):
     """Frequent non-lexicon words inside neutral-scored headlines."""
     freq = Counter()
     examples = {}
@@ -146,7 +157,7 @@ def candidates(scored_items, lexicon_words):
             continue
         for tok in tokenize(item["title"]):
             w = tok.strip("'")
-            if len(w) > 2 and w not in lexicon_words and w not in STOPWORDS:
+            if len(w) > 2 and w not in lexicon_words and w not in STOPWORDS and w not in excluded:
                 freq[w] += 1
                 examples.setdefault(w, []).append(item["title"])
     out = []
@@ -198,13 +209,14 @@ def main():
 
     hn_lex = lex["PESSIMISM_WORDS"] | lex["OPTIMISM_WORDS"]
     g_lex = lex["FEAR_WORDS"] | lex["HOPE_WORDS"]
+    excluded = load_excluded()
 
     report = {
         "date": today,
         "hn": {**hn_sum, "spectrum": "pessimism↔optimism"},
         "guardian": {**g_sum, "spectrum": "fear↔hope"},
-        "hn_candidates": candidates(hn_scored, hn_lex),
-        "guardian_candidates": candidates(g_scored, g_lex),
+        "hn_candidates": candidates(hn_scored, hn_lex, excluded),
+        "guardian_candidates": candidates(g_scored, g_lex, excluded),
         "hn_sample": [
             {"title": h["title"], **s} for h, s in hn_scored if s["index"] != 0
         ][:10],
