@@ -27,3 +27,7 @@ distilled into entries below when they land.
 
 ## 2026-09-11 — literature scan
 - TriLex (Alharbi, Aljurbua, Gupta & Obradovic, 2025) — https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0317100 — unsupervised fusion of TextBlob/VADER/AFINN via majority vote + cross-lexicon score normalization beat individual lexicons by 2-8% on short texts. Verdict: watch — score normalization across two spectra is portable; full fusion is heavier than our needs.
+
+## 2026-09-13 — literature scan
+- [GoodNewsEveryone: A Corpus of News Headlines Annotated with Emotions, Semantic Roles, and Reader Perception](http://arxiv.org/pdf/1912.03184v1) — Bostan et al., 2020 — 9,932 news headlines annotated with 15 emotions including Optimism/Pessimism and Fear, from both reader and writer perspectives. Verdict: adopt — headline-domain validation set matching our two spectra almost label-for-label; complements the parked SemEval-2007 set.
+- [DepecheMood++: a Bilingual Emotion Lexicon Built Through Simple Yet Powerful Techniques](http://arxiv.org/pdf/1810.03660v1) — Staiano & Guerini, 2018 — refresh of the parked DepecheMood with improved extraction and validation; validates on headlines by averaging word-level emotion scores, the same aggregation our scorer uses. Verdict: watch — AFRAID/INSPIRED dimensions map onto fear/hope and could gap-fill our lists once diffed against current lexicons.
