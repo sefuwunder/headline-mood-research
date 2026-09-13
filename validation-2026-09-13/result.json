@@ -1,0 +1,218 @@
+{
+ "fear-hope": {
+  "n": 807,
+  "goldNeg": 419,
+  "goldPos": 388,
+  "coverage": "35.6%",
+  "neutralPct": "64.4%",
+  "directionPrecision": "86.1%",
+  "recallNeg": "90.4%",
+  "recallPos": "74.4%",
+  "topMissedTokens": [
+   [
+    "with",
+    37
+   ],
+   [
+    "after",
+    22
+   ],
+   [
+    "over",
+    19
+   ],
+   [
+    "from",
+    19
+   ],
+   [
+    "says",
+    19
+   ],
+   [
+    "about",
+    19
+   ],
+   [
+    "this",
+    18
+   ],
+   [
+    "that",
+    17
+   ],
+   [
+    "world",
+    16
+   ],
+   [
+    "report",
+    14
+   ],
+   [
+    "mueller",
+    13
+   ],
+   [
+    "more",
+    12
+   ]
+  ],
+  "topWrongDirectionCues": [
+   [
+    "deal",
+    4
+   ],
+   [
+    "win",
+    3
+   ],
+   [
+    "peace",
+    3
+   ],
+   [
+    "missile",
+    2
+   ],
+   [
+    "hope",
+    2
+   ],
+   [
+    "won",
+    2
+   ],
+   [
+    "save",
+    2
+   ],
+   [
+    "dead",
+    2
+   ],
+   [
+    "emergency",
+    1
+   ],
+   [
+    "attack",
+    1
+   ],
+   [
+    "probe",
+    1
+   ],
+   [
+    "scandal",
+    1
+   ]
+  ]
+ },
+ "pessimism-optimism": {
+  "n": 642,
+  "goldNeg": 323,
+  "goldPos": 319,
+  "coverage": "12.1%",
+  "neutralPct": "87.9%",
+  "directionPrecision": "80.8%",
+  "recallNeg": "76.3%",
+  "recallPos": "85%",
+  "topMissedTokens": [
+   [
+    "with",
+    47
+   ],
+   [
+    "from",
+    30
+   ],
+   [
+    "will",
+    28
+   ],
+   [
+    "says",
+    28
+   ],
+   [
+    "iran",
+    25
+   ],
+   [
+    "about",
+    21
+   ],
+   [
+    "plan",
+    20
+   ],
+   [
+    "deal",
+    19
+   ],
+   [
+    "that",
+    18
+   ],
+   [
+    "after",
+    18
+   ],
+   [
+    "more",
+    18
+   ],
+   [
+    "this",
+    16
+   ]
+  ],
+  "topWrongDirectionCues": [
+   [
+    "future",
+    3
+   ],
+   [
+    "free",
+    2
+   ],
+   [
+    "crisis",
+    2
+   ],
+   [
+    "open",
+    1
+   ],
+   [
+    "grim",
+    1
+   ],
+   [
+    "solved",
+    1
+   ],
+   [
+    "boom",
+    1
+   ],
+   [
+    "waste",
+    1
+   ],
+   [
+    "failed",
+    1
+   ],
+   [
+    "revolution",
+    1
+   ],
+   [
+    "crash",
+    1
+   ]
+  ]
+ }
+}
