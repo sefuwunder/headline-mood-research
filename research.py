@@ -52,6 +52,28 @@ def load_lexicons():
     return out
 
 
+def load_intensities():
+    """Per-word intensity tiers parsed from server.ts (1=mild, 3=extreme).
+
+    Unlisted words default to tier 2, matching the dashboard.
+    """
+    src = SERVER_TS.read_text()
+    out = {}
+    for name in (
+        "FEAR_INTENSITY",
+        "HOPE_INTENSITY",
+        "PESSIMISM_INTENSITY",
+        "OPTIMISM_INTENSITY",
+    ):
+        m = re.search(
+            r"const " + name + r": Record<string, number> = \{(.*?)\};", src, re.S
+        )
+        if not m:
+            raise RuntimeError(f"could not parse {name} from server.ts")
+        out[name] = {w: int(t) for w, t in re.findall(r"(\w+): ([123])", m.group(1))}
+    return out
+
+
 def fetch(url, timeout=25):
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     with urllib.request.urlopen(req, timeout=timeout) as r:
@@ -97,12 +119,20 @@ def tokenize(title):
     ]
 
 
-def score(title, neg_words, pos_words):
+def score(title, neg_words, pos_words, neg_intensity=None, pos_intensity=None,
+          excluded=frozenset()):
+    """Replicates the dashboard's scoreHeadline: intensity-weighted hits,
+    EXCLUDED_WORDS skipped, negators neutralize, single-hit capped at ±50."""
     tokens = tokenize(title)
     neg = pos = 0
+    hits = 0
     neg_hits, pos_hits = [], []
+    ni = neg_intensity or {}
+    pi = pos_intensity or {}
     for i, raw in enumerate(tokens):
         word = raw.strip("'")
+        if word in excluded:
+            continue
         kind = "neg" if word in neg_words else ("pos" if word in pos_words else None)
         if not kind:
             continue
@@ -112,13 +142,16 @@ def score(title, neg_words, pos_words):
         if any(t in NEGATORS or t.endswith("n't") for t in prev):
             continue
         if kind == "neg":
-            neg += 1
+            neg += ni.get(word, 2)
             neg_hits.append(word)
         else:
-            pos += 1
+            pos += pi.get(word, 2)
             pos_hits.append(word)
+        hits += 1
     total = neg + pos
     index = 0 if total == 0 else round(100 * (pos - neg) / total)
+    if hits == 1:
+        index = max(-50, min(50, index))
     return {
         "index": index,
         "neg": neg,
@@ -171,14 +204,38 @@ def candidates(scored_items, lexicon_words, excluded):
 
 def main():
     lex = load_lexicons()
+    intensity = load_intensities()
+    excluded = load_excluded()
     hn = hn_headlines()
     g = guardian_headlines()
 
     hn_scored = [
-        (h, score(h["title"], lex["PESSIMISM_WORDS"], lex["OPTIMISM_WORDS"])) for h in hn
+        (
+            h,
+            score(
+                h["title"],
+                lex["PESSIMISM_WORDS"],
+                lex["OPTIMISM_WORDS"],
+                intensity["PESSIMISM_INTENSITY"],
+                intensity["OPTIMISM_INTENSITY"],
+                excluded,
+            ),
+        )
+        for h in hn
     ]
     g_scored = [
-        (h, score(h["title"], lex["FEAR_WORDS"], lex["HOPE_WORDS"])) for h in g
+        (
+            h,
+            score(
+                h["title"],
+                lex["FEAR_WORDS"],
+                lex["HOPE_WORDS"],
+                intensity["FEAR_INTENSITY"],
+                intensity["HOPE_INTENSITY"],
+                excluded,
+            ),
+        )
+        for h in g
     ]
     hn_sum, g_sum = summarize([s for _, s in hn_scored]), summarize(
         [s for _, s in g_scored]
@@ -209,7 +266,6 @@ def main():
 
     hn_lex = lex["PESSIMISM_WORDS"] | lex["OPTIMISM_WORDS"]
     g_lex = lex["FEAR_WORDS"] | lex["HOPE_WORDS"]
-    excluded = load_excluded()
 
     report = {
         "date": today,
