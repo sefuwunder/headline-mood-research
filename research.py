@@ -23,6 +23,11 @@ NEGATORS = {
     "shouldn't", "wouldn't", "hasn't", "haven't", "hadn't",
 }
 
+# 2026-09-15: resolution words — the worst is over. A fear hit in a headline
+# containing one of these ("outbreak has peaked") is good news, so neutralize
+# it the way negators do. Mirrors RESOLUTION_WORDS in the dashboard.
+RESOLUTION_WORDS = {"peaked", "slowing", "easing"}
+
 STOPWORDS = set(
     """a an the and or of to in on for with at by from as is are was were be been being
     it its this that these those i you he she we they them his her our their my your me
@@ -120,10 +125,17 @@ def tokenize(title):
 
 
 def score(title, neg_words, pos_words, neg_intensity=None, pos_intensity=None,
-          excluded=frozenset()):
+          excluded=frozenset(), resolution_damp=False):
     """Replicates the dashboard's scoreHeadline: intensity-weighted hits,
-    EXCLUDED_WORDS skipped, negators neutralize, single-hit capped at ±50."""
+    EXCLUDED_WORDS skipped, negators neutralize, single-hit capped at ±50.
+    resolution_damp=True neutralizes neg-pole hits when a resolution word
+    appears anywhere in the headline (dashboard: fear-hope spectrum only)."""
     tokens = tokenize(title)
+    # Resolution words ("outbreak has peaked") neutralize fear hits like
+    # negators do — mirrors the dashboard's headline-level check.
+    resolving = resolution_damp and any(
+        t.strip("'") in RESOLUTION_WORDS for t in tokens
+    )
     neg = pos = 0
     hits = 0
     neg_hits, pos_hits = [], []
@@ -140,6 +152,8 @@ def score(title, neg_words, pos_words, neg_intensity=None, pos_intensity=None,
         # Negators neutralize valence rather than flipping polarity
         # (Polanyi & Zaenen 2006) — matches the dashboard.
         if any(t in NEGATORS or t.endswith("n't") for t in prev):
+            continue
+        if kind == "neg" and resolving:
             continue
         if kind == "neg":
             neg += ni.get(word, 2)
@@ -233,6 +247,7 @@ def main():
                 intensity["FEAR_INTENSITY"],
                 intensity["HOPE_INTENSITY"],
                 excluded,
+                resolution_damp=True,  # fear-hope spectrum only
             ),
         )
         for h in g
