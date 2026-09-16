@@ -1,0 +1,6 @@
+# Heavyweight / environment-specific files excluded from the daily research-repo push.
+# The cron pushes research artifacts (research.py, trend.jsonl, bibliography.md, README.md),
+# not downloaded data or Python environments.
+bench-venv/
+__pycache__/
+lexicons/
