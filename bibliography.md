@@ -49,3 +49,6 @@ distilled into entries below when they land.
 
 ## 2026-09-17 — literature scan
 - [Optimism, Pessimism, and the Language between: Model Interpretability and Psycholinguistic Profiling](https://aclanthology.org/2025.ranlp-1.141/) — Tabusca & Dinu, 2025 — LIWC + LIME analysis of a RoBERTa optimism/pessimism classifier: optimism and pessimism occupy overlapping yet distinguishable psycholinguistic regions, with influential tokens tied to affective intensity, certainty, and social orientation. Verdict: watch — directly targets our HN spectrum, but gives no reusable word list; the "overlapping regions" finding argues for a margin/borderline review of PESSIMISM_WORDS rather than new additions.
+
+## 2026-09-19 — literature scan
+- [Hybrid Negation: Enhancing Sentiment Analysis for Complex Sentences](https://www.mdpi.com/2076-3417/16/2/1000) — Qorib & Cotae, 2026 — clause-aware hybrid negation (explicit/implicit/double-negation rules + dependency-based scope detection) beats pure sign-flip polarity inversion; ablations show dependency scope and double negations contribute the largest gains. Verdict: watch — our fixed-window sign flip is cheap and holds up on headlines; adopt only if negation misfires pile up.
