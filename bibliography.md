@@ -52,3 +52,7 @@ distilled into entries below when they land.
 
 ## 2026-09-19 — literature scan
 - [Hybrid Negation: Enhancing Sentiment Analysis for Complex Sentences](https://www.mdpi.com/2076-3417/16/2/1000) — Qorib & Cotae, 2026 — clause-aware hybrid negation (explicit/implicit/double-negation rules + dependency-based scope detection) beats pure sign-flip polarity inversion; ablations show dependency scope and double negations contribute the largest gains. Verdict: watch — our fixed-window sign flip is cheap and holds up on headlines; adopt only if negation misfires pile up.
+
+## 2026-09-20 — literature scan
+- [Lexicon-Based Methods for Sentiment Analysis](https://preview.aclanthology.org/dashboard-stats/J11-2001.pdf) — Taboada, Brooke, Tofiloski, Voll & Stede, 2011 — SO-CAL: graded polarity+strength dictionaries with intensification and negation handled as shifts toward/away from neutral rather than sign flips; dictionaries validated via Mechanical Turk. Verdict: adopt — negation-as-shift already matches our neutralize rule; the intensifier dictionary is the template for an intensifier/downtoner tier list we have never built.
+- [Norms of valence, arousal, and dominance for 13,915 English lemmas](https://biblio.ugent.be/publication/4268564) — Warriner, Kuperman & Brysbaert, 2013 — crowdsourced 1–9 valence/arousal/dominance norms for ~14k lemmas; fear ≈ low valence + high arousal. Verdict: adopt — diff FEAR_WORDS against low-valence/high-arousal lemmas to gap-fill, and demote low-arousal fear words one intensity tier.
