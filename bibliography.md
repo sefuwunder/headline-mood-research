@@ -59,3 +59,6 @@ distilled into entries below when they land.
 
 ## 2026-09-21 — literature scan
 - [Temporal patterns of happiness and information in a global social network: Hedonometrics and Twitter](http://arxiv.org/pdf/1101.5120) — Dodds, Harris, Kloumann, Bliss & Danforth, 2011 — 10,222 words crowdsourced on 1–9 happiness scales (labMT) with per-word shift graphs that decompose a score change into individual word contributions. Verdict: adopt — graded happiness ratings map onto both spectra's intensity tiers, and the word-shift technique pairs with the adopted Reagan et al. per-word contribution audit for diagnosing index swings.
+
+## 2026-09-22 — literature scan
+- [Words that Matter: The Impact of Negative Words on News Sentiment and Stock Market Index](http://arxiv.org/pdf/2304.00468) — Wonseong Kim, 2023 — 45k economic news titles: expanding the lexicon with the top-1,000 Word2Vec nearest-neighbors of 'crisis' made negative headline sentiment far more detectable than the base lexicon alone. Verdict: watch — headline-domain evidence for nearest-neighbor lexicon expansion around seed words, complementing the parked SentProp approach; domain is Korean economic news, so generalize with care.
