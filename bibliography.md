@@ -3,6 +3,9 @@
 Running record of research papers reviewed for the headline-mood lexicon work.
 Each entry: title, authors/year, link, one-line idea, verdict (adopted / rejected + reason / parked).
 
+## 2026-09-25 — literature scan
+- [Emotional Amplification in News Headlines Compared to Article Content: A Statistical Analysis](https://www.cureusjournals.com/articles/13765-emotional-amplification-in-news-headlines-compared-to-article-content-a-statistical-analysis) — Desai & Honamore, 2026 — NRC-EmoLex scoring of headlines vs bodies shows emotional amplification in 20–25% of headlines, with fear the most-amplified emotion. Verdict: watch — headline-domain evidence that our Guardian fear index runs systematically hot vs body text; use it to argue against adding fear words on headline-only evidence.
+
 ## 2026-09-10 — deep survey in progress
 A broad survey of lexicon-based sentiment/emotion approaches (classic: LIWC, VADER,
 AFINN, NRC, SentiWordNet; recent: embedding-expanded lexicons, hybrid lexicon+transformer
