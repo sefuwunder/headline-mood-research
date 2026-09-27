@@ -3,6 +3,9 @@
 Running record of research papers reviewed for the headline-mood lexicon work.
 Each entry: title, authors/year, link, one-line idea, verdict (adopted / rejected + reason / parked).
 
+## 2026-09-27 — literature scan
+- [Sentiment analysis for measuring hope and fear from Reddit posts during the 2022 Russo-Ukrainian conflict](https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2023.1163577/full) — Guerra & Karakus, 2023 — builds a 221-word hope lexicon (NRC "anticipation" ∩ "positive"/"joy" ∩ subjective) and measures hope/fear via dictionary counts with upvote weighting. Verdict: adopt — its hope↔fear spectrum matches our Guardian spectrum label-for-label; diff our HOPE_WORDS against the 221-word list (repo: https://github.com/hlt-ghisolfi-leuzzi-testa/hope-lexicon) for gap-fill. Caution: built on Reddit war posts, so audit each candidate against news-headline domain (per Loughran & McDonald).
+
 ## 2026-09-25 — literature scan
 - [Emotional Amplification in News Headlines Compared to Article Content: A Statistical Analysis](https://www.cureusjournals.com/articles/13765-emotional-amplification-in-news-headlines-compared-to-article-content-a-statistical-analysis) — Desai & Honamore, 2026 — NRC-EmoLex scoring of headlines vs bodies shows emotional amplification in 20–25% of headlines, with fear the most-amplified emotion. Verdict: watch — headline-domain evidence that our Guardian fear index runs systematically hot vs body text; use it to argue against adding fear words on headline-only evidence.
 
