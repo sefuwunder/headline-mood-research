@@ -1,5 +1,9 @@
 # Mood-scoring bibliography
 
+## 2026-09-28 — literature scan
+- [Benchmarking Psychological Lexicons and Large Language Models for Emotion Detection in Brazilian Portuguese](https://www.mdpi.com/2673-2688/6/10/249) — Authors, 2025 — benchmarks lexicon-based EmoAtlas (EmoLex bag-of-words + statistical testing vs random sampling) against BERT/Mistral on 1,000 news headlines; lexicon approach loses accuracy but stays competitive at ~1/40th the compute, and is explicitly limited by lexicon coverage on short texts (headlines <15 words degraded). Verdict: watch — headline-corpus benchmark on the interpretability/efficiency side of our design choice; language is Portuguese so no wordlist borrowing, but the coverage-limit finding reinforces our daily gap-word triage practice.
+
+
 Running record of research papers reviewed for the headline-mood lexicon work.
 Each entry: title, authors/year, link, one-line idea, verdict (adopted / rejected + reason / parked).
 
