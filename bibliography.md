@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-09-29 — literature scan
+- [The Impact of Intensifiers, Diminishers and Negations on Emotion Expressions](https://d-nb.info/1153008971/34) — Florian Strohm, 2017 — bachelor thesis on modifier effects on emotion words in tweets: negation slightly improves classification; hill-climb-optimized weights show intensified emotions scale ~1.3× (fear→fear coefficient 1.3); appendices ship ready-made negation/diminisher/intensifier lexicons. Verdict: adopt — the modifier wordlists + the 1.3/0.7 weighting template are the missing ingredient for the never-built intensifier/downtoner tier.
+
 ## 2026-09-28 — literature scan
 - [Benchmarking Psychological Lexicons and Large Language Models for Emotion Detection in Brazilian Portuguese](https://www.mdpi.com/2673-2688/6/10/249) — Authors, 2025 — benchmarks lexicon-based EmoAtlas (EmoLex bag-of-words + statistical testing vs random sampling) against BERT/Mistral on 1,000 news headlines; lexicon approach loses accuracy but stays competitive at ~1/40th the compute, and is explicitly limited by lexicon coverage on short texts (headlines <15 words degraded). Verdict: watch — headline-corpus benchmark on the interpretability/efficiency side of our design choice; language is Portuguese so no wordlist borrowing, but the coverage-limit finding reinforces our daily gap-word triage practice.
 
