@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-09-30 — literature scan
+- [Sentiment Analysis of Economic Text: A Lexicon-Based Approach](https://overfitted.cloud/pdf/2411.13958) — Barbaglia, Consoli, Manzan, Tiozzo Pezzoli & Tosetti, 2024 — proposes an Economic Lexicon (EL) with human-annotated sentiment scores in [-1,1] and wider domain-relevant coverage; beats general lexicons on categorization accuracy. Verdict: watch — economic-domain wordlist diffable against our FEAR_WORDS (inflation, recession); the "general lexicon loses to domain lexicon" result independently replicates the adopted Loughran–McDonald domain-audit principle.
+
 ## 2026-09-29 — literature scan
 - [The Impact of Intensifiers, Diminishers and Negations on Emotion Expressions](https://d-nb.info/1153008971/34) — Florian Strohm, 2017 — bachelor thesis on modifier effects on emotion words in tweets: negation slightly improves classification; hill-climb-optimized weights show intensified emotions scale ~1.3× (fear→fear coefficient 1.3); appendices ship ready-made negation/diminisher/intensifier lexicons. Verdict: adopt — the modifier wordlists + the 1.3/0.7 weighting template are the missing ingredient for the never-built intensifier/downtoner tier.
 
