@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-10-03 — literature scan
+- [From Trial by Fire To Sleep Like a Baby: A Lexicon of Anxiety Associations for 20k English Multiword Expressions](https://arxiv.org/abs/2602.18692) — Saif M. Mohammad, 2026 — first large-scale MWE lexicon of anxiety associations (20k multiword expressions, highly reliable norms; bundles with 44k-word WorryWords as WorryLex), studies compositionality and prevalence across 2–4-word sequences. Verdict: adopt — anxiety is the fear pole under another name; MWEs ("at breaking point", "trial by fire") are exactly the multi-word gap our single-word scorer misses; diff WorryMWEs against FEAR_WORDS as the first MWE-capable expansion.
+
 ## 2026-10-02 — literature scan
 - [The Effect of Negators, Modals, and Degree Adverbs on Sentiment Composition](http://mail.saifmohammad.com/WebDocs/SCL-NMA-wassa2016.pdf) — Kiritchenko & Mohammad, 2016 — real-valued sentiment lexicon of modifier+content phrases (Best-Worst Scaling): only "highly" is a consistent intensifier; "less" acts as a negator; "too", "probably", "fairly", "relatively" diminish intensity; modifier effect depends on BOTH the modifier and the content word. Verdict: adopt — the missing behavior spec for the never-built intensifier/downtoner tier: seed list = highly (booster); less (negator); too/probably/fairly/relatively (downtoners); and the modifier×content interaction warns against blind fixed multipliers.
 
