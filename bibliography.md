@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-10-04 — literature scan
+- [Optimism, Expectation, or Sarcasm? Multi-Class Hope Speech Detection in Spanish and English](https://arxiv.org/pdf/2504.17974) — Butt, Balouchzahi, Amjad, Amjad, Ceballos & Jiménez-Zafra, 2025 — error analysis of hope-speech classifiers finds "lexical hope triggers without genuine optimism" (aspirational verbs in a negative frame, e.g. "We yearn for change, but nothing ever improves") as the top misfire pattern. Verdict: watch — transformer method, no borrowable lexicon, but the misfire pattern is directly portable to our gap-word triage: audit HOPE_WORDS for aspirational verbs (yearn, aspire, dream) that fire in pessimistic frames.
+
 ## 2026-10-03 — literature scan
 - [From Trial by Fire To Sleep Like a Baby: A Lexicon of Anxiety Associations for 20k English Multiword Expressions](https://arxiv.org/abs/2602.18692) — Saif M. Mohammad, 2026 — first large-scale MWE lexicon of anxiety associations (20k multiword expressions, highly reliable norms; bundles with 44k-word WorryWords as WorryLex), studies compositionality and prevalence across 2–4-word sequences. Verdict: adopt — anxiety is the fear pole under another name; MWEs ("at breaking point", "trial by fire") are exactly the multi-word gap our single-word scorer misses; diff WorryMWEs against FEAR_WORDS as the first MWE-capable expansion.
 
