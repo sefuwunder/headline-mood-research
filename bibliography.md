@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-10-05 — literature scan
+- [Lexicon-Enhanced Fine-Grained Sentiment Classification for Online Social-Behavior Analysis](https://www.mdpi.com/2076-3417/16/17/8849) — Applied Sciences, 2026 — side-by-side benchmark of TextBlob/SentiStrength/VADER as lexicon-derived affective indicators on 41k tweets (5-class intensity): treats each lexicon's score as a separate indicator rather than merging them into one; hierarchy VADER > SentiStrength > TextBlob, gains classifier-dependent. Verdict: watch — supports keeping our per-spectrum indices as separate indicators cross-checked against a second lexicon (e.g. VADER compound as an independent daily read on the same headlines) instead of fusing into one mood number.
+
 ## 2026-10-04 — literature scan
 - [Optimism, Expectation, or Sarcasm? Multi-Class Hope Speech Detection in Spanish and English](https://arxiv.org/pdf/2504.17974) — Butt, Balouchzahi, Amjad, Amjad, Ceballos & Jiménez-Zafra, 2025 — error analysis of hope-speech classifiers finds "lexical hope triggers without genuine optimism" (aspirational verbs in a negative frame, e.g. "We yearn for change, but nothing ever improves") as the top misfire pattern. Verdict: watch — transformer method, no borrowable lexicon, but the misfire pattern is directly portable to our gap-word triage: audit HOPE_WORDS for aspirational verbs (yearn, aspire, dream) that fire in pessimistic frames.
 
