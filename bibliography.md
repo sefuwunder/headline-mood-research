@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-10-06 — literature scan
+- [Analyzing hope speech from psycholinguistic and emotional perspectives](https://www.nature.com/articles/s41598-024-74630-y) — Arif, Shahiki Tash, Jamshidi, Ullah, Ameer, Kalita, Gelbukh & Balouchzahi, 2024 — hope is not exclusively positive: it co-occurs with anger/sadness/fear, and NRC emotion dimensions (fear, anticipation, joy, sadness, trust) plus LIWC features distinguish hope subtypes well enough to rival deep-learning classifiers. Verdict: adopt — directly relevant to the Guardian fear↔hope spectrum: the co-occurrence finding argues for keeping fear and hope as separate accumulators (a two-ledger read) instead of a single bipolar index where opposite hits cancel.
+
 ## 2026-10-05 — literature scan
 - [Lexicon-Enhanced Fine-Grained Sentiment Classification for Online Social-Behavior Analysis](https://www.mdpi.com/2076-3417/16/17/8849) — Applied Sciences, 2026 — side-by-side benchmark of TextBlob/SentiStrength/VADER as lexicon-derived affective indicators on 41k tweets (5-class intensity): treats each lexicon's score as a separate indicator rather than merging them into one; hierarchy VADER > SentiStrength > TextBlob, gains classifier-dependent. Verdict: watch — supports keeping our per-spectrum indices as separate indicators cross-checked against a second lexicon (e.g. VADER compound as an independent daily read on the same headlines) instead of fusing into one mood number.
 
