@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-10-07 — literature scan
+- [NRC VAD Lexicon v2: Norms for Valence, Arousal, and Dominance for over 55k English Terms](https://arxiv.org/abs/2503.23547) — Saif M. Mohammad, 2025 — supersedes the v1 entry (2026-09-20): ~25k additional single words plus first-ever ~10k multiword phrases, all with reliable human valence/arousal/dominance ratings. Verdict: adopt — the phrase entries are a ready-made, research-scored MWE tier (pairs with the adopted WorryMWE and SC-OPP plans), and the expanded coverage tightens the low-valence/high-arousal fear-pole diff against FEAR_WORDS.
+
 ## 2026-10-06 — literature scan
 - [Analyzing hope speech from psycholinguistic and emotional perspectives](https://www.nature.com/articles/s41598-024-74630-y) — Arif, Shahiki Tash, Jamshidi, Ullah, Ameer, Kalita, Gelbukh & Balouchzahi, 2024 — hope is not exclusively positive: it co-occurs with anger/sadness/fear, and NRC emotion dimensions (fear, anticipation, joy, sadness, trust) plus LIWC features distinguish hope subtypes well enough to rival deep-learning classifiers. Verdict: adopt — directly relevant to the Guardian fear↔hope spectrum: the co-occurrence finding argues for keeping fear and hope as separate accumulators (a two-ledger read) instead of a single bipolar index where opposite hits cancel.
 
