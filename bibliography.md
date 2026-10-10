@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-10-10 — literature scan
+- [Comparative evaluation of lexicon-based and transformer-based sentiment analysis tools](https://link.springer.com/article/10.1007/s10791-026-09967-1) — Omojowo F., 2026 — 4,000-tweet Nigerian COVID-19 gold set (κ = 0.82): BERTweet 86% vs VADER 72% vs TextBlob 70%; lexicon ran 10× faster (1,200 vs 120 tweets/sec); lexicon misfires concentrated on sarcasm ("no be wahala again" read as positive). Verdict: watch — largest recent lexicon-vs-transformer head-to-head on short texts; the sarcasm-misfire concentration is portable to our HN gap-word triage, and the 10× speed gap quantifies our interpretability choice. Proposes a lexicon→transformer hybrid framework (conceptual only, unevaluated).
+
 ## 2026-10-07 — literature scan
 - [NRC VAD Lexicon v2: Norms for Valence, Arousal, and Dominance for over 55k English Terms](https://arxiv.org/abs/2503.23547) — Saif M. Mohammad, 2025 — supersedes the v1 entry (2026-09-20): ~25k additional single words plus first-ever ~10k multiword phrases, all with reliable human valence/arousal/dominance ratings. Verdict: adopt — the phrase entries are a ready-made, research-scored MWE tier (pairs with the adopted WorryMWE and SC-OPP plans), and the expanded coverage tightens the low-valence/high-arousal fear-pole diff against FEAR_WORDS.
 
