@@ -112,3 +112,6 @@ distilled into entries below when they land.
 
 ## 2026-09-22 — literature scan
 - [Words that Matter: The Impact of Negative Words on News Sentiment and Stock Market Index](http://arxiv.org/pdf/2304.00468) — Wonseong Kim, 2023 — 45k economic news titles: expanding the lexicon with the top-1,000 Word2Vec nearest-neighbors of 'crisis' made negative headline sentiment far more detectable than the base lexicon alone. Verdict: watch — headline-domain evidence for nearest-neighbor lexicon expansion around seed words, complementing the parked SentProp approach; domain is Korean economic news, so generalize with care.
+
+## 2026-10-11 — literature scan
+- [A Comparison of Lexicon-Based and ML-Based Sentiment Analysis: Are There Outlier Words?](https://arxiv.org/pdf/2311.06221) — Mahajani & Smeaton, 2023 — regressed Hedonometer-vs-Azure score gaps on 150k texts across finance, news, social, reviews to find lexical entries driving the divergence: no standout outlier words; a word's impact is domain-dependent (only "mom" recurred across domains). Verdict: watch — cautions against chasing single-word misfires in our gap-word triage; reinforces the Loughran–McDonald per-domain audit principle over global word-weight fixes.

@@ -1,0 +1,39 @@
+--- a/src/server.ts	2026-10-10 15:17:34.806085549 +0000
++++ b/src/server.ts	2026-10-10 15:17:34.886957684 +0000
+@@ -168,6 +168,7 @@
+     { source: "National Gallery of Jamaica", url: "https://nationalgalleryofjamaica.wordpress.com/feed/" },
+     { source: "Soca News", url: "https://socanews.com/feed/", noFilter: true },
+     { source: "World Music Views", url: "https://worldmusicviews.com/feed/", noFilter: true },
++    { source: "Sokah2Soca", url: "https://feeds.feedburner.com/sokah2soca", noFilter: true },
+   ],
+   africa: [
+     { source: "The NATIVE", url: "https://thenativemag.com/feed" },
+@@ -471,7 +472,8 @@
+     // 2026-09-14: fugitive (research candidate — appeared twice, not excluded)
+     // 2026-09-15: missing (research candidate — appeared twice in disaster headlines, not excluded)
+     // 2026-09-19: military (research candidate — two fear-leaning Guardian headlines)
+-    "deport tariff tariffs fugitive missing military").split(" ")
++    // 2026-10-10: doubt/doubts, sacked, furious, detention (lexicon batch — Guardian fear contexts)
++    "deport tariff tariffs fugitive missing military doubt doubts sacked furious detention").split(" ")
+ );
+ 
+ // Graded intensity tiers (Reagan et al. 2017: continuum-scored words beat
+@@ -483,7 +485,7 @@
+   deadly: 3, dead: 3, death: 3, deaths: 3, kill: 3, killed: 3, killing: 3, kills: 3,
+   terror: 3, terrorist: 3, terrorists: 3, terrorism: 3,
+   catastrophe: 3, catastrophic: 3, disaster: 3, disastrous: 3,
+-  nightmare: 3, horror: 3, hell: 3,
++  nightmare: 3, horror: 3, hell: 3, furious: 3,   // 2026-10-10: high tier
+   missile: 3, missiles: 3, bomb: 3, bombs: 3, bombing: 3, bombings: 3,
+   airstrike: 3, airstrikes: 3, invasion: 3, invade: 3, invaded: 3,
+   nuclear: 3, meltdown: 3, plague: 3, epidemic: 3, pandemic: 3, famine: 3,
+@@ -563,7 +565,8 @@
+     "failed failing failure failures broken obsolete deprecated abandoned abandon sunset " +
+     "sunsetted killed worst terrible terribly awful dreadful bleak grim dire dystopia " +
+     "dystopian enshittification collapse collapsed collapsing crash crashed crashing crisis " +
+-    "bubble burst overhyped layoffs fired firing pessimistic pessimism skeptical skepticism " +
++    // 2026-10-10: "fires" added — fired/firing covered, plural form missed.
++    "bubble burst overhyped layoffs fired firing fires pessimistic pessimism skeptical skepticism " +
+     "doubt doubts doubtful doubting uncertain uncertainty fragile fragility flawed flaw " +
+     "flaws bug bugs buggy slow slower slowest expensive costly overpriced waste wasted " +
+     "wasteful pointless useless scam scams fraud monopoly monopolistic stagnation stagnant " +
