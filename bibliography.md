@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-10-12 — literature scan
+- [Mapping the Technological Future: A Topic, Sentiment, and Emotion Analysis in Social Media Discourse](https://arxiv.org/html/2407.17522v1) — Landowska, Skórski & Rajda, 2024 — 1.5M tweets scored for anticipatory emotions via Plutchik dyads: Hope = Anticipation + Trust, Anxiety = Anticipation + Fear (pessimism/optimism model outputs rejected for lack of definitional consensus); Score(Anxiety) ≈ median +10.3% hope over anxiety. Verdict: watch — transformer method, but the dyad composition is a portable lexicon pattern: it argues for scoring hope from anticipation+trust co-hits and fear from anticipation+fear co-hits, and for keeping fear and hope as separate accumulators (pairs with adopted Arif et al. 2026-10-06) rather than a single bipolar cancel-out.
+
 ## 2026-10-10 — literature scan
 - [Comparative evaluation of lexicon-based and transformer-based sentiment analysis tools](https://link.springer.com/article/10.1007/s10791-026-09967-1) — Omojowo F., 2026 — 4,000-tweet Nigerian COVID-19 gold set (κ = 0.82): BERTweet 86% vs VADER 72% vs TextBlob 70%; lexicon ran 10× faster (1,200 vs 120 tweets/sec); lexicon misfires concentrated on sarcasm ("no be wahala again" read as positive). Verdict: watch — largest recent lexicon-vs-transformer head-to-head on short texts; the sarcasm-misfire concentration is portable to our HN gap-word triage, and the 10× speed gap quantifies our interpretability choice. Proposes a lexicon→transformer hybrid framework (conceptual only, unevaluated).
 

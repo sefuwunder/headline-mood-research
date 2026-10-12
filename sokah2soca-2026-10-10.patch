@@ -1,0 +1,12 @@
+# PENDING PROPOSAL — Sokah2Soca feed for the CARICOM arts tab.
+# The lexicon hunks from the 2026-10-10 batch were applied to the real
+# lexicon on 2026-10-11 (commit 6a6dbec); only this feed hunk remains open.
+# Applies against src/server.ts.
+@@ -168,6 +168,7 @@
+     { source: "National Gallery of Jamaica", url: "https://nationalgalleryofjamaica.wordpress.com/feed/" },
+     { source: "Soca News", url: "https://socanews.com/feed/", noFilter: true },
+     { source: "World Music Views", url: "https://worldmusicviews.com/feed/", noFilter: true },
++    { source: "Sokah2Soca", url: "https://feeds.feedburner.com/sokah2soca", noFilter: true },
+   ],
+   africa: [
+     { source: "The NATIVE", url: "https://thenativemag.com/feed" },
