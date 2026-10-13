@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-10-13 — literature scan
+- [Emotional divergence in urban climate discourse: spatial patterns and semantic decoding across global cities](https://www.nature.com/articles/s44432-026-00016-2) — Juyan Chen, Chengwei Li & Jianqi Yu, 2026 — rule-based short-text scorer layers three lexical sources with a strict priority order (multiword phrases > AFINN > domain lexicon > NRC), then applies negation, intensity-modulation and contrastive-reweighting rules; hit 97.4% coverage on 100k+ tweets, used as the high-coverage partner next to a RoBERTa classifier. Verdict: adopt — the MWE-first priority order is the cleanest implementation recipe yet for our MWE tier (multiword match wins over single-word hits), and the priority-stack + rule-adjustments design is a direct template for layering the fear/hope lists over NRC VAD or DepecheMood fills.
+
 ## 2026-10-12 — literature scan
 - [Mapping the Technological Future: A Topic, Sentiment, and Emotion Analysis in Social Media Discourse](https://arxiv.org/html/2407.17522v1) — Landowska, Skórski & Rajda, 2024 — 1.5M tweets scored for anticipatory emotions via Plutchik dyads: Hope = Anticipation + Trust, Anxiety = Anticipation + Fear (pessimism/optimism model outputs rejected for lack of definitional consensus); Score(Anxiety) ≈ median +10.3% hope over anxiety. Verdict: watch — transformer method, but the dyad composition is a portable lexicon pattern: it argues for scoring hope from anticipation+trust co-hits and fear from anticipation+fear co-hits, and for keeping fear and hope as separate accumulators (pairs with adopted Arif et al. 2026-10-06) rather than a single bipolar cancel-out.
 
