@@ -1,0 +1,124 @@
+--- server.ts
++++ server.after.ts
+@@ -475,7 +475,10 @@
+     // 2026-09-19: military (research candidate — two fear-leaning Guardian headlines)
+     // 2026-10-10 batch (applied 2026-10-11): doubt/doubts, sacked, furious,
+     // detention — Guardian fear contexts
+-    "deport tariff tariffs fugitive missing military doubt doubts sacked furious detention").split(" ")
++    // 2026-10-15: poisoning, betrayal (Guardian gap words, tier 2 default);
++    // arrests (Guardian gap word, mild tier 1)
++    "deport tariff tariffs fugitive missing military doubt doubts sacked furious detention " +
++    "poisoning betrayal arrests").split(" ")
+ );
+ 
+ // Graded intensity tiers (Reagan et al. 2017: continuum-scored words beat
+@@ -502,6 +505,7 @@
+   sanction: 1, sanctions: 1, tariff: 1, tariffs: 1, military: 1,
+   lawsuit: 1, probe: 1, probed: 1, scandal: 1, scandals: 1,
+   expel: 1, expelled: 1, banned: 1, curfew: 1, deport: 1,
++  arrests: 1, // 2026-10-15: mild tier
+   hack: 1, hacked: 1, hacking: 1, breach: 1, breached: 1, scam: 1, scams: 1,
+   missing: 1,
+ };
+@@ -536,6 +540,7 @@
+   approve: 1, approved: 1, approval: 1,
+   deal: 1, deals: 1, agreement: 1, agreements: 1, agreed: 1,
+   launch: 1, launches: 1, launched: 1, launching: 1,
++  wins: 1, surge: 1, // 2026-10-15: demoted one tier (was default 2)
+ };
+ 
+ const NEGATORS = new Set(
+@@ -543,6 +548,13 @@
+    "isn't", "aren't", "wasn't", "weren't", "don't", "doesn't", "didn't", "couldn't",
+    "shouldn't", "wouldn't", "hasn't", "haven't", "hadn't"]
+ );
++
++// 2026-10-15: denial verbs — implicit negation (Polanyi & Zaenen 2006;
++// Qorib & Cotae 2026). "denies it has approved" should not score "approved"
++// as hope. Checked over a 4-token window (the denial sits further back than
++// the 2-token negator window) and neutralizes valence like a negator, on
++// both poles. Caveat: also mutes fear hits, e.g. "denies fraud allegations".
++const DENIAL_VERBS = new Set(["deny", "denies", "denied"]);
+ 
+ // 2026-09-15: resolution words — the worst is over. A fear hit in a headline
+ // containing one of these ("outbreak has peaked") is good news, so neutralize
+@@ -558,6 +570,10 @@
+   "fire", "ukraine", "case", "finds",
+   "google", "programming", "show", "engine", "visits", "trump", "see", "ireland", "sweden",
+   "happened",
++  // 2026-10-15: power/legal/action/trial — polysemous headline words.
++  // Preventive: none of these are in a scored list today, so no current
++  // scoring change; this guards future lexicon additions.
++  "power", "legal", "action", "trial",
+ ]);
+ 
+ // pessimism / optimism: tuned for tech headlines (Hacker News)
+@@ -569,7 +585,9 @@
+     "dystopian enshittification collapse collapsed collapsing crash crashed crashing crisis " +
+     // 2026-10-11: "fires" (fired/firing covered, plural missed); "hard"
+     // (difficulty-framed HN headlines; mild — "hard tech" is admired)
++    // 2026-10-15: backdoor/backdoors (Ledger spy-chip headlines); self-replicate
+     "bubble burst overhyped layoffs fired firing fires pessimistic pessimism skeptical skepticism hard " +
++    "backdoor backdoors self-replicate " +
+     "doubt doubts doubtful doubting uncertain uncertainty fragile fragility flawed flaw " +
+     "flaws bug bugs buggy slow slower slowest expensive costly overpriced waste wasted " +
+     "wasteful pointless useless scam scams fraud monopoly monopolistic stagnation stagnant " +
+@@ -614,6 +632,14 @@
+ const FEAR_MWES: Array<{ phrase: string; weight: number }> = [
+   // 2026-10-11: "found guilty" — gap word; bare "found" stays unscored.
+   { phrase: "found guilty", weight: 2 },
++];
++
++// Multi-word expressions for the pessimism pole (HN headlines).
++const PESSIMISM_MWES: Array<{ phrase: string; weight: number }> = [
++  // 2026-10-15: "spy chip" — Ledger spy-chip headlines scored neutral.
++  // Both forms: the tokenizer keeps hyphens, so "spy-chip" never matches "spy chip".
++  { phrase: "spy chip", weight: 2 },
++  { phrase: "spy-chip", weight: 2 },
+ ];
+ 
+ interface Spectrum {
+@@ -655,6 +681,7 @@
+   posWords: OPTIMISM_WORDS,
+   negIntensity: PESSIMISM_INTENSITY,
+   posIntensity: OPTIMISM_INTENSITY,
++  negMwes: PESSIMISM_MWES,
+ };
+ 
+ interface ScoredHeadline {
+@@ -696,10 +723,14 @@
+     if (!kind) return;
+     const prev = tokens.slice(Math.max(0, i - 2), i).map((t) => t.replace(/^'+|'+$/g, ""));
+     const negated = prev.some((t) => NEGATORS.has(t) || t.endsWith("n't"));
++    const denied = tokens
++      .slice(Math.max(0, i - 4), i)
++      .map((t) => t.replace(/^'+|'+$/g, ""))
++      .some((t) => DENIAL_VERBS.has(t));
+     // Negators neutralize valence rather than flipping polarity
+     // (Polanyi & Zaenen 2006: "not a failure" is neutral, not positive).
+     // Resolution words neutralize fear hits the same way.
+-    if (negated) return;
++    if (negated || denied) return;
+     if (kind === "neg" && resolving) return;
+     // Graded intensities: a strong word outweighs a mild one
+     // (Reagan et al. 2017: continuum-scored words beat binary valence).
+@@ -721,15 +752,16 @@
+       const needle = " " + mwe.phrase + " ";
+       let idx = text.indexOf(needle);
+       while (idx !== -1) {
+-        const before = text
++        const beforeAll = text
+           .slice(0, idx)
+           .trim()
+           .split(/\s+/)
+           .filter(Boolean)
+-          .slice(-2)
+           .map((t) => t.replace(/^'+|'+$/g, ""));
++        const before = beforeAll.slice(-2);
+         const negated = before.some((t) => NEGATORS.has(t) || t.endsWith("n't"));
+-        if (!negated && !resolving) {
++        const denied = beforeAll.slice(-4).some((t) => DENIAL_VERBS.has(t));
++        if (!negated && !denied && !resolving) {
+           neg += mwe.weight;
+           negHits.push(mwe.phrase);
+           hits++;

@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-10-16 — literature scan
+- [Hybrid News Sentiment Engine: Real-Time Market Analysis via Adaptive Ensemble Learning on News-Price Pairs](https://arxiv.org/abs/2606.03457) — Andreas A. Aigner, 2026 — CPU-only headline sentiment engine pairing a 248-word finance lexicon (positive/negative/uncertainty/litigious tiers, 1.2× weight on negative hits, additive-smoothing denominator) with an adaptive TF-IDF cluster learner; the lexicon alone runs ~0.1 ms per headline. Verdict: watch — finance-domain solo-industry paper unvalidated against our spectra, but the headline-formula recipe (asymmetric negative weight + smoothed denominator) is directly portable to our scorer and echoes the adopted Rocha 2026 negative-burst asymmetry.
+
 ## 2026-10-14 — literature scan
 - [Do large language models keep the hedge? Uncertainty preservation when large language models summarize aviation and maritime incident reports](https://www.frontiersin.org/journals/language-sciences/articles/10.3389/flang.2026.1953328/full) — Baradziej, 2026 — validates a deterministic lexicon-based hedge/booster detector (multiword markers matched before single-word substrings, longer-match wins) against hand-annotated sentences: hedge adverbs hit precision 0.90, but epistemic modals only 0.23 because a fixed list can't resolve polysemy. Verdict: watch — hedge/booster categories map onto our never-built downtoner/intensifier tier; the per-category precision split argues for seeding that tier with high-precision hedge adverbs (possibly, reportedly) at a modest damp weight before touching modals, and for hand-checking a sample before each wordlist addition.
 
