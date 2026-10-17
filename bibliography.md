@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-10-17 — literature scan
+- [Decoding Neural Emotion Patterns through Natural Language Processing Embeddings](https://arxiv.org/html/2508.09337v1) — Vos, Ebrahimpour, van Eijk, Sarnyai & Rahimi Azghadi, 2025 — grades emotional intensity on four lexical tiers (extreme 1.0 / high 0.8 / moderate 0.6 / mild 0.3) and applies ADDITIVE linguistic modifiers: intensifiers (+0.3: very, really, completely), absolutists (+0.2: never, always), all-caps (+0.5), exclamation (+0.25 each, capped), base 0.1, final score capped at 2.0. Verdict: adopt — first published recipe for the never-built intensifier tier with an additive (not multiplicative) structure: boosters add a fixed increment to the word's tier score rather than multiplying it, which is safer than fixed multipliers per the adopted Kiritchenko & Mohammad modifier×content warning; the caps/markup bonuses map directly onto HN's all-caps shouting.
+
 ## 2026-10-16 — literature scan
 - [Hybrid News Sentiment Engine: Real-Time Market Analysis via Adaptive Ensemble Learning on News-Price Pairs](https://arxiv.org/abs/2606.03457) — Andreas A. Aigner, 2026 — CPU-only headline sentiment engine pairing a 248-word finance lexicon (positive/negative/uncertainty/litigious tiers, 1.2× weight on negative hits, additive-smoothing denominator) with an adaptive TF-IDF cluster learner; the lexicon alone runs ~0.1 ms per headline. Verdict: watch — finance-domain solo-industry paper unvalidated against our spectra, but the headline-formula recipe (asymmetric negative weight + smoothed denominator) is directly portable to our scorer and echoes the adopted Rocha 2026 negative-burst asymmetry.
 

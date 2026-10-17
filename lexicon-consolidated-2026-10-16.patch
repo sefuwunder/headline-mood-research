@@ -1,0 +1,75 @@
+--- a/src/server.ts	2026-10-16 09:46:21.009356586 -0400
++++ b/src/server.ts	2026-10-16 09:46:25.654022962 -0400
+@@ -477,8 +477,11 @@
+     // detention — Guardian fear contexts
+     // 2026-10-16 batch (applied): allegations/allegation, denies/deny/denied —
+     // gap words in fear-framed scandal/legal headlines (tier 1: procedural)
++    // 2026-10-16: poisoning, betrayal (Guardian gap words, tier 2 default);
++    // arrests (Guardian gap word, mild tier 1)
+     "deport tariff tariffs fugitive missing military doubt doubts sacked furious detention " +
+-    "allegations allegation denies deny denied").split(" ")
++    "allegations allegation denies deny denied " +
++    "poisoning betrayal arrests").split(" ")
+ );
+ 
+ // Graded intensity tiers (Reagan et al. 2017: continuum-scored words beat
+@@ -508,6 +511,7 @@
+   hack: 1, hacked: 1, hacking: 1, breach: 1, breached: 1, scam: 1, scams: 1,
+   missing: 1,
+   allegations: 1, allegation: 1, denies: 1, deny: 1, denied: 1, // 2026-10-16: procedural fear
++  arrests: 1, // 2026-10-16: mild tier
+ };
+ 
+ // 2026-09-16: "discovery"/"discoveries" removed — misfired on a femicide
+@@ -540,6 +544,7 @@
+   approve: 1, approved: 1, approval: 1,
+   deal: 1, deals: 1, agreement: 1, agreements: 1, agreed: 1,
+   launch: 1, launches: 1, launched: 1, launching: 1,
++  wins: 1, surge: 1, // 2026-10-16: demoted one tier (was default 2)
+ };
+ 
+ const NEGATORS = new Set(
+@@ -565,6 +570,10 @@
+   "google", "programming", "show", "engine", "visits", "trump", "see", "ireland", "sweden",
+   "happened",
+   "apple", "iphone", "sites",
++  // 2026-10-16: power/legal/action/trial — polysemous headline words.
++  // Preventive: none of these are in a scored list today, so no current
++  // scoring change; this guards future lexicon additions.
++  "power", "legal", "action", "trial",
+ ]);
+ 
+ // pessimism / optimism: tuned for tech headlines (Hacker News)
+@@ -576,7 +585,9 @@
+     "dystopian enshittification collapse collapsed collapsing crash crashed crashing crisis " +
+     // 2026-10-11: "fires" (fired/firing covered, plural missed); "hard"
+     // (difficulty-framed HN headlines; mild — "hard tech" is admired)
++    // 2026-10-16: backdoor/backdoors (spy-chip headlines); self-replicate
+     "bubble burst overhyped layoffs fired firing fires pessimistic pessimism skeptical skepticism hard " +
++    "backdoor backdoors self-replicate " +
+     "doubt doubts doubtful doubting uncertain uncertainty fragile fragility flawed flaw " +
+     "flaws bug bugs buggy slow slower slowest expensive costly overpriced waste wasted " +
+     "wasteful pointless useless scam scams fraud monopoly monopolistic stagnation stagnant " +
+@@ -623,6 +634,14 @@
+   { phrase: "found guilty", weight: 2 },
+ ];
+ 
++// Multi-word expressions for the pessimism pole (HN headlines).
++const PESSIMISM_MWES: Array<{ phrase: string; weight: number }> = [
++  // 2026-10-16: "spy chip" — spy-chip headlines scored neutral.
++  // Both forms: the tokenizer keeps hyphens, so "spy-chip" never matches "spy chip".
++  { phrase: "spy chip", weight: 2 },
++  { phrase: "spy-chip", weight: 2 },
++];
++
+ interface Spectrum {
+   id: string;
+   label: string; // "fear ↔ hope"
+@@ -668,6 +687,7 @@
+   posWords: OPTIMISM_WORDS,
+   negIntensity: PESSIMISM_INTENSITY,
+   posIntensity: OPTIMISM_INTENSITY,
++  negMwes: PESSIMISM_MWES,
+ };
+ 
+ interface ScoredHeadline {

@@ -69,3 +69,16 @@ on this list awaiting their own word — the user can resolve it in one line.
 On the user's answer: `git apply` the patch in the daily-briefing tree,
 re-run the 17-headline check, rebuild the zip, run the pre-push hash audit,
 push. Patch is dated; re-verify against the tree if days pass.
+
+## 2026-10-16 re-stage
+The Oct 16 morning batch (allegations/denies → fear tier 1, apple/iphone/sites
+excluded, Guardian fear ×1.2) changed the tree, so the patch was re-staged as
+`lexicon-consolidated-2026-10-16.patch` against the current tree and re-verified
+with the real scorer (6 headlines, before/after — all directions correct).
+
+Item 11 (deny/denies/denied as DENIAL_VERBS neutralizers) was DROPPED from the
+re-staged patch: it directly conflicts with the Oct 16 approval that made those
+words tier-1 fear hits. Both mechanisms cannot coexist — the neutralizer would
+silently gut the morning's change ("denies allegations" would lose the
+allegations hit). If the user wants implicit negation instead, say so and the
+fear-words addition gets reverted first.
