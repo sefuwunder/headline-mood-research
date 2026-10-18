@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-10-18 — literature scan
+- [Frustratingly Easy Sentiment Analysis of Text Streams: Generating High-Quality Emotion Arcs Using Emotion Lexicons](https://ar5iv.labs.arxiv.org/html/2210.07381) — Teodorescu & Mohammad, 2022 — lexicon-only methods are poor at the instance level but generate high-fidelity emotion arcs (Spearman vs gold) when aggregating hundreds of instances per bin; real-valued lexicons beat categorical ones especially at small bin sizes; overlapping time windows smooth the arc. Verdict: adopt — our trend.jsonl is exactly such an arc: read the 7-day moving average rather than the single-day index as the mood signal, and it strengthens the case for real-valued intensity tiers over binary wordlists.
+
 ## 2026-10-17 — literature scan
 - [Decoding Neural Emotion Patterns through Natural Language Processing Embeddings](https://arxiv.org/html/2508.09337v1) — Vos, Ebrahimpour, van Eijk, Sarnyai & Rahimi Azghadi, 2025 — grades emotional intensity on four lexical tiers (extreme 1.0 / high 0.8 / moderate 0.6 / mild 0.3) and applies ADDITIVE linguistic modifiers: intensifiers (+0.3: very, really, completely), absolutists (+0.2: never, always), all-caps (+0.5), exclamation (+0.25 each, capped), base 0.1, final score capped at 2.0. Verdict: adopt — first published recipe for the never-built intensifier tier with an additive (not multiplicative) structure: boosters add a fixed increment to the word's tier score rather than multiplying it, which is safer than fixed multipliers per the adopted Kiritchenko & Mohammad modifier×content warning; the caps/markup bonuses map directly onto HN's all-caps shouting.
 
