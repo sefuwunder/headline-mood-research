@@ -4,3 +4,6 @@
 bench-venv/
 __pycache__/
 lexicons/
+# 2026-10-16: staged daily-briefing tree awaiting the user's own push
+# (decisions-2026-10-16.md); must NOT ride along in the research repo.
+push-staging-2026-10-16/
