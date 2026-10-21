@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-10-21 — literature scan
+- [Senti-N-Gram: An n-gram lexicon for sentiment analysis](https://www.sciencedirect.com/science/article/pii/S095741741830143X) — Dey, Jenamani & Thakkar, 2018 — fully automatic procedure building a general-purpose n-gram sentiment lexicon from 100k+ reviews' numeric ratings (rating association replaces human annotators; scores derived with intensifier/negation handling baked in); beat VADER and SO-CAL on review benchmarks. Verdict: adopt — the rating-derived n-gram lexicon recipe is the most portable MWE-tier builder yet: phrases carry their own precomputed scores, so no hand-tuning per phrase and negation/intensifier behavior is learned from the rating signal; review-domain means every candidate n-gram still gets a news-headline audit per Loughran–McDonald before admission.
+
 ## 2026-10-18 — literature scan
 - [Frustratingly Easy Sentiment Analysis of Text Streams: Generating High-Quality Emotion Arcs Using Emotion Lexicons](https://ar5iv.labs.arxiv.org/html/2210.07381) — Teodorescu & Mohammad, 2022 — lexicon-only methods are poor at the instance level but generate high-fidelity emotion arcs (Spearman vs gold) when aggregating hundreds of instances per bin; real-valued lexicons beat categorical ones especially at small bin sizes; overlapping time windows smooth the arc. Verdict: adopt — our trend.jsonl is exactly such an arc: read the 7-day moving average rather than the single-day index as the mood signal, and it strengthens the case for real-valued intensity tiers over binary wordlists.
 
