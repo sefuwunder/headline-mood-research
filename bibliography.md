@@ -136,3 +136,6 @@ distilled into entries below when they land.
 
 ## 2026-10-11 — literature scan
 - [A Comparison of Lexicon-Based and ML-Based Sentiment Analysis: Are There Outlier Words?](https://arxiv.org/pdf/2311.06221) — Mahajani & Smeaton, 2023 — regressed Hedonometer-vs-Azure score gaps on 150k texts across finance, news, social, reviews to find lexical entries driving the divergence: no standout outlier words; a word's impact is domain-dependent (only "mom" recurred across domains). Verdict: watch — cautions against chasing single-word misfires in our gap-word triage; reinforces the Loughran–McDonald per-domain audit principle over global word-weight fixes.
+
+## 2026-10-22 — literature scan
+- [Examining negativity and positivity bias in Pulitzer prize-winning news: a study across six subgenres](https://doi.org/10.1093/llc/fqaf118) — Xia & Huan, 2026 — sentiment analysis of 1,000+ Pulitzer-winning news articles across 26 years and six subgenres (Breaking, National, Local, Explanatory, Investigative, International): the linguistic positivity bias does NOT hold uniformly in news — negative sentiment prevails in the prize corpus, with subgenre-specific patterns. Verdict: watch — further news-domain evidence that negative framing dominates prize-quality news, backing our Guardian fear-dominance observations; no borrowable lexicon, method is generic sentiment analysis.
