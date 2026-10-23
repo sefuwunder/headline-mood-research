@@ -139,3 +139,6 @@ distilled into entries below when they land.
 
 ## 2026-10-22 — literature scan
 - [Examining negativity and positivity bias in Pulitzer prize-winning news: a study across six subgenres](https://doi.org/10.1093/llc/fqaf118) — Xia & Huan, 2026 — sentiment analysis of 1,000+ Pulitzer-winning news articles across 26 years and six subgenres (Breaking, National, Local, Explanatory, Investigative, International): the linguistic positivity bias does NOT hold uniformly in news — negative sentiment prevails in the prize corpus, with subgenre-specific patterns. Verdict: watch — further news-domain evidence that negative framing dominates prize-quality news, backing our Guardian fear-dominance observations; no borrowable lexicon, method is generic sentiment analysis.
+
+## 2026-10-23 — literature scan
+- No qualifying new entries this pass. One search round over recent lexicon-based headline sentiment work surfaced only transformer/dictionary bake-offs (incl. Mavillonio et al. 2026 FinBERT-vs-dictionary financial news indices) and finance-LLM multiplier pipelines — nothing lexicon-methodological below the existing adopt/watch bar, and nothing touching the fear/hope or pessimism/optimism spectra. Scan time-boxed as scheduled; backlog unchanged by literature today.
