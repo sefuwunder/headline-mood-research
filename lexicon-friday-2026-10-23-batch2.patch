@@ -1,0 +1,10 @@
+--- a/src/server.ts
++++ b/src/server.ts
+@@ -565,6 +565,7 @@
+   "google", "programming", "show", "engine", "visits", "trump", "see", "ireland", "sweden",
+   "happened",
+   "apple", "iphone", "sites",
++  "drone", "body", // 2026-10-23: topic words, no stable affect
+ ]);
+ 
+ // pessimism / optimism: tuned for tech headlines (Hacker News)

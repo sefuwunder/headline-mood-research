@@ -1,0 +1,23 @@
+--- a/src/server.ts
++++ b/src/server.ts
+@@ -477,8 +477,11 @@
+     // detention — Guardian fear contexts
+     // 2026-10-16 batch (applied): allegations/allegation, denies/deny/denied —
+     // gap words in fear-framed scandal/legal headlines (tier 1: procedural)
++    // 2026-10-23 batch: controversial, protests, referendum, deforestation —
++    // tier 1 (mild); hostile, hostility, menace, menaces, targeted — tier 2 (default)
+     "deport tariff tariffs fugitive missing military doubt doubts sacked furious detention " +
+-    "allegations allegation denies deny denied").split(" ")
++    "allegations allegation denies deny denied controversial protests referendum " +
++    "deforestation hostile hostility menace menaces targeted").split(" ")
+ );
+ 
+ // Graded intensity tiers (Reagan et al. 2017: continuum-scored words beat
+@@ -508,6 +511,7 @@
+   hack: 1, hacked: 1, hacking: 1, breach: 1, breached: 1, scam: 1, scams: 1,
+   missing: 1,
+   allegations: 1, allegation: 1, denies: 1, deny: 1, denied: 1, // 2026-10-16: procedural fear
++  controversial: 1, protests: 1, referendum: 1, deforestation: 1, // 2026-10-23: mild tier
+ };
+ 
+ // 2026-09-16: "discovery"/"discoveries" removed — misfired on a femicide

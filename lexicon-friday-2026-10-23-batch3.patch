@@ -1,0 +1,33 @@
+--- a/src/server.ts
++++ b/src/server.ts
+@@ -576,11 +576,12 @@
+     "dystopian enshittification collapse collapsed collapsing crash crashed crashing crisis " +
+     // 2026-10-11: "fires" (fired/firing covered, plural missed); "hard"
+     // (difficulty-framed HN headlines; mild — "hard tech" is admired)
++    // 2026-10-23: "compromised" — HN pessimism gap word (default tier)
+     "bubble burst overhyped layoffs fired firing fires pessimistic pessimism skeptical skepticism hard " +
+     "doubt doubts doubtful doubting uncertain uncertainty fragile fragility flawed flaw " +
+     "flaws bug bugs buggy slow slower slowest expensive costly overpriced waste wasted " +
+     "wasteful pointless useless scam scams fraud monopoly monopolistic stagnation stagnant " +
+-    "surveillance creepy invasive bearish").split(" ")
++    "surveillance creepy invasive bearish compromised").split(" ")
+ );
+ 
+ const PESSIMISM_INTENSITY: Record<string, number> = {
+@@ -593,6 +594,7 @@
+   hard: 1,
+ };
+ 
++// 2026-10-23: "built" — HN optimism gap word (default tier)
+ const OPTIMISM_WORDS = new Set(
+   ("optimistic optimism exciting excited excitement promising promise future futuristic " +
+     "breakthrough amazing incredible awesome love loved great greatest best fantastic " +
+@@ -601,7 +603,7 @@
+     "opportunities progress innovative innovation revolution revolutionary delightful fun " +
+     "cool neat clever brilliant genius milestone success successful thriving boom golden " +
+     "renaissance shipped shipping launched launch release released debut fix fixed fixes " +
+-    "solve solved free trust trusted").split(" ")
++    "solve solved free trust trusted built").split(" ")
+ );
+ 
+ const OPTIMISM_INTENSITY: Record<string, number> = {

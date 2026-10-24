@@ -1,0 +1,65 @@
+--- a/src/server.ts
++++ b/src/server.ts
+@@ -623,6 +623,13 @@
+   { phrase: "found guilty", weight: 2 },
+ ];
+ 
++// Hope-side multi-word expressions: the scorer previously had no pos-pole
++// phrase support, so "deforestation falls to lowest on record" read as fear.
++// 2026-10-23: "lowest on record" — hope MWE (weight 2, mirroring "found guilty").
++const HOPE_MWES: Array<{ phrase: string; weight: number }> = [
++  { phrase: "lowest on record", weight: 2 },
++];
++
+ interface Spectrum {
+   id: string;
+   label: string; // "fear ↔ hope"
+@@ -635,6 +642,7 @@
+   negIntensity: Record<string, number>; // per-word tiers; unlisted words default to 2
+   posIntensity: Record<string, number>;
+   negMwes?: Array<{ phrase: string; weight: number }>;
++  posMwes?: Array<{ phrase: string; weight: number }>; // 2026-10-23: hope-side phrases
+   // 2026-10-16: optional asymmetric pole weight (Aigner 2026: 1.2x negative
+   // multiplier for negative-burst asymmetry). Multiplies neg-pole hits only.
+   negWeight?: number;
+@@ -652,6 +660,7 @@
+   negIntensity: FEAR_INTENSITY,
+   posIntensity: HOPE_INTENSITY,
+   negMwes: FEAR_MWES,
++  posMwes: HOPE_MWES,
+   // 2026-10-16: Guardian fear hits count 1.2x vs hope (negative-burst
+   // asymmetry, Aigner 2026). research.py does not model this.
+   negWeight: 1.2,
+@@ -750,6 +759,32 @@
+           hits++;
+         }
+         idx = text.indexOf(needle, idx + 1);
++      }
++    }
++  }
++  // Hope-side multi-word expressions: same matching as the neg side,
++  // credited to the pos pole. Negation and resolution words apply the
++  // same way as for single tokens.
++  if (sp.posMwes) {
++    const text = " " + title.toLowerCase().replace(/[^a-z0-9'\s-]/g, " ") + " ";
++    for (const mwe of sp.posMwes) {
++      const needle = " " + mwe.phrase + " ";
++      let idx = text.indexOf(needle);
++      while (idx !== -1) {
++        const before = text
++          .slice(0, idx)
++          .trim()
++          .split(/\s+/)
++          .filter(Boolean)
++          .slice(-2)
++          .map((t) => t.replace(/^'+|'+$/g, ""));
++        const negated = before.some((t) => NEGATORS.has(t) || t.endsWith("n't"));
++        if (!negated && !resolving) {
++          pos += mwe.weight;
++          posHits.push(mwe.phrase);
++          hits++;
++        }
++        idx = text.indexOf(needle, idx + 1);
+       }
+     }
+   }
