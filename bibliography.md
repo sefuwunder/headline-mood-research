@@ -142,3 +142,6 @@ distilled into entries below when they land.
 
 ## 2026-10-23 — literature scan
 - No qualifying new entries this pass. One search round over recent lexicon-based headline sentiment work surfaced only transformer/dictionary bake-offs (incl. Mavillonio et al. 2026 FinBERT-vs-dictionary financial news indices) and finance-LLM multiplier pipelines — nothing lexicon-methodological below the existing adopt/watch bar, and nothing touching the fear/hope or pessimism/optimism spectra. Scan time-boxed as scheduled; backlog unchanged by literature today.
+
+## 2026-10-26 — literature scan
+- [Automatic generation of lexica for sentiment polarity shifters](https://doi.org/10.1017/S135132492000039X) — Schulder, Wiegand & Ruppenhofer, 2021 — bootstrapped general polarity-shifter lexicon covering English verbs, nouns and adjectives (publicly available), extending the verbs-only 2018 lexicon already listed; shifters like "alleviate" move a phrase's polarity toward the opposite pole, exactly today's "slows cognitive decline" pattern. Verdict: watch — upgrades the 2018 watch entry: the general lexicon is the seed list if a full shifter/resolution tier is ever built, but our scorer's headline-level resolution check is a narrower mechanism than scope-based shifting.
