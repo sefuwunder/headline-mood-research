@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-11-01 — literature scan
+- [What distinguishes emotion-label words from emotion-laden words? The characterization of affective meaning from a multi-componential conception of emotions](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2024.1308421/full) — Betancourt, Guasch & Ferré, 2024 — valence + arousal cannot separate emotion-label words (fear) from emotion-laden words (death): on 800 Spanish words, feeling and interoception were the key features distinguishing label, laden, and neutral words. Verdict: watch — our FEAR/HOPE lists mix label words (fear, hope) with laden event words (death, crash, flood) at the same tiers, so a future tier audit by word type is warranted; Spanish-only 800-word set gives no direct English tier values to borrow.
+
 ## 2026-10-21 — literature scan
 - [Senti-N-Gram: An n-gram lexicon for sentiment analysis](https://www.sciencedirect.com/science/article/pii/S095741741830143X) — Dey, Jenamani & Thakkar, 2018 — fully automatic procedure building a general-purpose n-gram sentiment lexicon from 100k+ reviews' numeric ratings (rating association replaces human annotators; scores derived with intensifier/negation handling baked in); beat VADER and SO-CAL on review benchmarks. Verdict: adopt — the rating-derived n-gram lexicon recipe is the most portable MWE-tier builder yet: phrases carry their own precomputed scores, so no hand-tuning per phrase and negation/intensifier behavior is learned from the rating signal; review-domain means every candidate n-gram still gets a news-headline audit per Loughran–McDonald before admission.
 
