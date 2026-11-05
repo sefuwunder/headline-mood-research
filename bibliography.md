@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-11-05 — literature scan
+- [Best Practices in the Creation and Use of Emotion Lexicons](https://ar5iv.labs.arxiv.org/html/2210.07206) — Saif M. Mohammad, 2022 — 22 best practices across a lexicon's life cycle (design, annotation, entries, application): coverage gaps in specialized domains, lexicons are not immutable, fit the lexicon to your data, remove neutral words, and draw inferences at the aggregate level, not from single instances. Verdict: watch — guidance, not a wordlist, but its coverage/fit points directly back our daily gap-word triage and its aggregate-inference point reinforces the adopted Teodorescu & Mohammad 2022 emotion-arc reading of trend.jsonl.
+
 ## 2026-11-01 — literature scan
 - [What distinguishes emotion-label words from emotion-laden words? The characterization of affective meaning from a multi-componential conception of emotions](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2024.1308421/full) — Betancourt, Guasch & Ferré, 2024 — valence + arousal cannot separate emotion-label words (fear) from emotion-laden words (death): on 800 Spanish words, feeling and interoception were the key features distinguishing label, laden, and neutral words. Verdict: watch — our FEAR/HOPE lists mix label words (fear, hope) with laden event words (death, crash, flood) at the same tiers, so a future tier audit by word type is warranted; Spanish-only 800-word set gives no direct English tier values to borrow.
 
