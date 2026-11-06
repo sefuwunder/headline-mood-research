@@ -50,8 +50,12 @@ def load_lexicons():
         )
         if not m:
             raise RuntimeError(f"could not parse {name} from server.ts")
+        # 2026-11-06: strip // comments first — quoted words inside a comment
+        # (e.g. "hard tech" in the PESSIMISM block) were parsed as lexicon
+        # words, so "tech" scored as phantom pessimism since 2026-10-11.
+        block = re.sub(r"//.*", "", m.group(1))
         words = []
-        for chunk in re.findall(r'"([^"]*)"', m.group(1)):
+        for chunk in re.findall(r'"([^"]*)"', block):
             words.extend(chunk.split())
         out[name] = set(words)
     return out
