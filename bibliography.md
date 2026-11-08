@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-11-08 — literature scan
+- [Two is better than one: Using a single emotion lexicon can lead to unreliable conclusions](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0275910) — Czarnek & Stillwell, 2022 — LIWC vs NRC on ~5M tweets: the two lexicons give contradictory conclusions about positive affect after age 50, driven mostly by politics-related words; recommends routinely running at least two lexicons and investigating divergences. Verdict: watch — directly backs the open 2026-10-19 VADER cross-check proposal (a second lexicon read on the same headlines) and the politics-word divergence finding is portable to our Guardian gap-word triage, where politics headlines are exactly where a single-lexicon reading wobbles.
+
 ## 2026-11-05 — literature scan
 - [Best Practices in the Creation and Use of Emotion Lexicons](https://ar5iv.labs.arxiv.org/html/2210.07206) — Saif M. Mohammad, 2022 — 22 best practices across a lexicon's life cycle (design, annotation, entries, application): coverage gaps in specialized domains, lexicons are not immutable, fit the lexicon to your data, remove neutral words, and draw inferences at the aggregate level, not from single instances. Verdict: watch — guidance, not a wordlist, but its coverage/fit points directly back our daily gap-word triage and its aggregate-inference point reinforces the adopted Teodorescu & Mohammad 2022 emotion-arc reading of trend.jsonl.
 
