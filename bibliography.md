@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-11-09 — literature scan
+- [Analyzing Sentiment while Accounting for Negation Scope and Strength](https://personal.eur.nl/frasincar/papers/BNAIC2011b/bnaic2011bp.pdf) — Hogenboom, van Iterson, Heerschop, Frasincar & Kaymak, 2011 — compares negation-scope methods (rest-of-sentence, first-sentiment-word, next-non-adverb, fixed window) on SentiWordNet-scored review sentences: negating words within a fixed 2-word window after the negator wins (+6% accuracy/F1), and optimizing the inversion factor to −1.27 rather than −1 adds another 7–8%. Verdict: watch — the most concrete empirical negation-scope result in the bibliography; directly backs the open 2026-11-09 negation-scope proposal (cognition-verb negations like "not convinced X exists" escape the current window) and the adopted Polanyi & Zaenen negation-as-shift principle, though the movie-review domain means the window size needs a headline-domain check before tuning.
+
 ## 2026-11-08 — literature scan
 - [Two is better than one: Using a single emotion lexicon can lead to unreliable conclusions](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0275910) — Czarnek & Stillwell, 2022 — LIWC vs NRC on ~5M tweets: the two lexicons give contradictory conclusions about positive affect after age 50, driven mostly by politics-related words; recommends routinely running at least two lexicons and investigating divergences. Verdict: watch — directly backs the open 2026-10-19 VADER cross-check proposal (a second lexicon read on the same headlines) and the politics-word divergence finding is portable to our Guardian gap-word triage, where politics headlines are exactly where a single-lexicon reading wobbles.
 
