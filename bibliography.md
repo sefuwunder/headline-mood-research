@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-11-12 — literature scan
+- [An Empirical Study on the Effect of Negation Words on Sentiment](https://2014.aclweb.org/P14-1/xml/P14-1029.xhtml.html) — Zhu, Guo, Mohammad & Kiritchenko, 2014 — on the Stanford Sentiment Treebank, negated-phrase sentiment depends on the negator itself, not just the argument: simple sign-flip heuristics are poor estimators of negated sentiment, and negator-dependent models (including a compositional model using the argument's prior sentiment) beat them. Verdict: watch — second empirical leg under the open 2026-11-09 negation-scope proposal alongside Hogenboom et al. 2011: our scorer's fixed-window flip treats all negators identically, and this says the negator matters; treebank sentences, not headlines, so no direct window or strength values to borrow.
+
 ## 2026-11-09 — literature scan
 - [Analyzing Sentiment while Accounting for Negation Scope and Strength](https://personal.eur.nl/frasincar/papers/BNAIC2011b/bnaic2011bp.pdf) — Hogenboom, van Iterson, Heerschop, Frasincar & Kaymak, 2011 — compares negation-scope methods (rest-of-sentence, first-sentiment-word, next-non-adverb, fixed window) on SentiWordNet-scored review sentences: negating words within a fixed 2-word window after the negator wins (+6% accuracy/F1), and optimizing the inversion factor to −1.27 rather than −1 adds another 7–8%. Verdict: watch — the most concrete empirical negation-scope result in the bibliography; directly backs the open 2026-11-09 negation-scope proposal (cognition-verb negations like "not convinced X exists" escape the current window) and the adopted Polanyi & Zaenen negation-as-shift principle, though the movie-review domain means the window size needs a headline-domain check before tuning.
 
