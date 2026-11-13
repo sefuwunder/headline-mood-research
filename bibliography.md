@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-11-13 — literature scan
+- [An emotion-based model of negation, intensifiers, and modality for polarity and intensity classification](http://ideas.repec.org/a/bla/jamist/v64y2013i8p1618-1633.html) — Carrillo-de-Albornoz & Plaza, 2013 — models negation, intensifiers, and modality at the emotion level rather than the polarity level: representing text as a set of emotions (not just pos/neg) gives more accurate modifier modeling, and the emotion-based strategy beats traditional polar-expression approaches on polarity and intensity classification. Verdict: watch — directly backs the open 2026-11-09 negation-scope proposal (cognition-verb negations) and the never-built intensifier tier: modifiers should be modeled per-emotion, not per-pole; JASIST 2013, no headline-domain window or strength values to borrow, so the mechanism design still needs a headline-domain check.
+
 ## 2026-11-12 — literature scan
 - [An Empirical Study on the Effect of Negation Words on Sentiment](https://2014.aclweb.org/P14-1/xml/P14-1029.xhtml.html) — Zhu, Guo, Mohammad & Kiritchenko, 2014 — on the Stanford Sentiment Treebank, negated-phrase sentiment depends on the negator itself, not just the argument: simple sign-flip heuristics are poor estimators of negated sentiment, and negator-dependent models (including a compositional model using the argument's prior sentiment) beat them. Verdict: watch — second empirical leg under the open 2026-11-09 negation-scope proposal alongside Hogenboom et al. 2011: our scorer's fixed-window flip treats all negators identically, and this says the negator matters; treebank sentences, not headlines, so no direct window or strength values to borrow.
 
