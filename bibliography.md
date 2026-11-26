@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-11-26 — literature scan
+- [Machine Learning with Self-Assessment Manikin Valence Scale for Fine-Grained Sentiment Analysis](https://www.mdpi.com/2078-2489/16/7/562) — Manik, Susianto, Dinakaramani, Pramanik & Suhardijanto, 2025 — builds a lexicon of emotion-laden words rated on the 1–9 Self-Assessment Manikin valence scale and shows the lexicon-derived polarity score improves fine-grained sentiment prediction on short texts across classical, RNN, and transformer models. Verdict: watch — the continuous SAM valence scale is another graded-rating recipe backing our intensity tiers (same family as the adopted Warriner et al. 2013 and NRC Affect Intensity), but the wordlist is Indonesian (750 words extending Indonesian ANEW), so nothing to borrow directly for the English lexicons.
+
 ## 2026-11-24 — literature scan
 - [Building word-emotion mapping dictionary for online news](https://scholars.cityu.edu.hk/en/publications/building-word-emotion-mapping-dictionary-for-online-news/) — Rao, Quan, Wenyin, Li & Chen, 2012 — automatically builds a word-emotion mapping dictionary for online news (each word gets a distribution over human emotions, no hand annotation), with three parameter-free pruning strategies to refine it; validated on real news datasets and more adaptive to the news domain than general-purpose lexicons. Verdict: watch — the earliest news-domain automatic-dictionary recipe in the bibliography (same family as the listed de Vries 2022 seed-expansion and parked SentProp approaches); the pruning strategies are the portable piece for growing our fear/hope lists from seeds, but it is a 2012 workshop paper and its emotion categories are generic rather than fear/hope-specific.
 
