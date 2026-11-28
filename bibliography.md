@@ -1,5 +1,8 @@
 # Mood-scoring bibliography
 
+## 2026-11-28 — literature scan
+- [Guilt by Association: Emotion Intensities in Lexical Representations](https://arxiv.org/abs/2104.08679) — Raji & de Melo, 2021 — word vectors (word2vec/GloVe/fastText/AffectVec) predict human emotion-intensity ratings with far higher correlation than state-of-the-art emotion lexicons, including an unsupervised cosine-to-emotion-word method that needs no training data. Verdict: watch — embedding-induced intensity scores are a calibration recipe for our hand-set tiers in the SentProp/de Vries seed-expansion family, but unsupervised fear correlation is weak (0.08–0.14 vs ~0.7 supervised) and there is no headline-domain validation, so it calibrates rather than replaces hand tiers.
+
 ## 2026-11-26 — literature scan
 - [Machine Learning with Self-Assessment Manikin Valence Scale for Fine-Grained Sentiment Analysis](https://www.mdpi.com/2078-2489/16/7/562) — Manik, Susianto, Dinakaramani, Pramanik & Suhardijanto, 2025 — builds a lexicon of emotion-laden words rated on the 1–9 Self-Assessment Manikin valence scale and shows the lexicon-derived polarity score improves fine-grained sentiment prediction on short texts across classical, RNN, and transformer models. Verdict: watch — the continuous SAM valence scale is another graded-rating recipe backing our intensity tiers (same family as the adopted Warriner et al. 2013 and NRC Affect Intensity), but the wordlist is Indonesian (750 words extending Indonesian ANEW), so nothing to borrow directly for the English lexicons.
 
